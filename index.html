@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Fit Katha Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #1B5E20;
+  --primary-light: #4CAF50;
+  --primary-dark: #0D3B13;
+  --primary-50: #E8F5E9;
+  --primary-100: #C8E6C9;
+  --primary-200: #A5D6A7;
+  --accent: #FF6B35;
+  --accent-light: #FF8F66;
+  --accent-dark: #E55A2B;
+  --bg: #F5F7FA;
+  --surface: #FFFFFF;
+  --surface-2: #F8FAFB;
+  --surface-3: #F0F2F5;
+  --text: #1A1D21;
+  --text-secondary: #5F6B7A;
+  --text-tertiary: #8C95A1;
+  --border: #E3E8EF;
+  --border-light: #F0F2F5;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
+  --shadow-xl: 0 20px 40px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  --success: #0F9D58;
+  --success-bg: #E6F4EA;
+  --warning: #F29900;
+  --warning-bg: #FEF7E0;
+  --danger: #D93025;
+  --danger-bg: #FCE8E6;
+  --info: #1A73E8;
+  --info-bg: #E8F0FE;
+  --sidebar-w: 260px;
+  --header-h: 64px;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 14px; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: var(--sidebar-w);
+  background: var(--primary-dark);
+  display: flex; flex-direction: column;
+  z-index: 100;
+  transition: transform var(--transition);
+}
+.sidebar-brand {
+  padding: 20px 22px; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-brand .brand-icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+.sidebar-brand .brand-icon {
+  width: 40px; height: 40px; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #fff; font-weight: 700;
+  font-family: var(--font-display);
+}
+.sidebar-brand .brand-text { color: #fff; }
+.sidebar-brand .brand-text h1 { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+.sidebar-brand .brand-text p { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+.sidebar-nav { flex: 1; padding: 12px 10px; overflow-y: auto; }
+.nav-section { margin-bottom: 8px; }
+.nav-section-title {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; color: rgba(255,255,255,0.3);
+  padding: 8px 14px 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 10px; cursor: pointer;
+  color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500;
+  transition: all var(--transition); margin-bottom: 2px;
+  position: relative;
+}
+.nav-item:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); }
+.nav-item.active {
+  background: rgba(255,255,255,0.12); color: #fff;
+}
+.nav-item.active::before {
+  content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 20px; background: var(--accent); border-radius: 0 3px 3px 0;
+}
+.nav-item i { width: 20px; text-align: center; font-size: 15px; }
+.nav-item .badge {
+  margin-left: auto; font-size: 10px; font-weight: 600;
+  background: var(--accent); color: #fff; padding: 2px 7px;
+  border-radius: var(--radius-full); min-width: 20px; text-align: center;
+}
+
+.sidebar-footer {
+  padding: 14px 16px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-footer .api-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: rgba(255,255,255,0.4);
+}
+.sidebar-footer .status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+}
+.status-dot.connected { background: var(--success); box-shadow: 0 0 6px var(--success); }
+.status-dot.disconnected { background: var(--danger); }
+
+/* ── HEADER ── */
+.header {
+  position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--header-h);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center; padding: 0 28px; gap: 16px;
+  z-index: 90;
+}
+.header .mobile-toggle {
+  display: none; background: none; border: none; font-size: 20px;
+  color: var(--text); cursor: pointer; padding: 8px;
+}
+.header .page-title {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.3px;
+}
+.header .page-subtitle {
+  font-size: 12px; color: var(--text-tertiary); font-weight: 400;
+}
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.header .search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface-3); border: 1px solid transparent;
+  border-radius: var(--radius); padding: 8px 14px;
+  transition: all var(--transition); min-width: 240px;
+}
+.header .search-box:focus-within { background: #fff; border-color: var(--primary-light); box-shadow: 0 0 0 3px var(--primary-50); }
+.header .search-box i { color: var(--text-tertiary); font-size: 13px; }
+.header .search-box input {
+  border: none; background: none; outline: none; font-size: 13px;
+  color: var(--text); width: 100%; font-family: var(--font);
+}
+.header .search-box input::placeholder { color: var(--text-tertiary); }
+
+.btn-icon {
+  width: 38px; height: 38px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-secondary); font-size: 15px;
+  transition: all var(--transition); position: relative;
+}
+.btn-icon:hover { background: var(--surface-3); border-color: var(--text-tertiary); }
+.btn-icon .notif-dot {
+  position: absolute; top: 6px; right: 6px; width: 7px; height: 7px;
+  background: var(--danger); border-radius: 50%; border: 2px solid #fff;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--sidebar-w); margin-top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow-y: auto; padding: 24px 28px;
+}
+
+/* ── PAGE SECTIONS ── */
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── STAT CARDS ── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: all var(--transition); position: relative; overflow: hidden;
+}
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.stat-card .stat-icon {
+  width: 42px; height: 42px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 14px;
+}
+.stat-card .stat-value {
+  font-family: var(--font-display); font-size: 28px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.5px;
+}
+.stat-card .stat-label { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; font-weight: 500; }
+.stat-card .stat-change {
+  position: absolute; top: 18px; right: 18px;
+  font-size: 11px; font-weight: 600; padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+.stat-change.up { background: var(--success-bg); color: var(--success); }
+.stat-change.down { background: var(--danger-bg); color: var(--danger); }
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface); border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: box-shadow var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-sm); }
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; border-bottom: 1px solid var(--border-light);
+}
+.card-header h3 { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+.card-body { padding: 18px 22px; }
+.card-footer { padding: 14px 22px; border-top: 1px solid var(--border-light); background: var(--surface-2); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 13px;
+  font-weight: 600; font-family: var(--font); cursor: pointer;
+  transition: all var(--transition); border: none; white-space: nowrap;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: var(--accent-dark); box-shadow: var(--shadow-md); }
+.btn-outline {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.btn-outline:hover { border-color: var(--text-tertiary); background: var(--surface-3); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 8px; }
+.btn-ghost { background: none; border: none; color: var(--text-secondary); padding: 6px 10px; }
+.btn-ghost:hover { background: var(--surface-3); color: var(--text); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-success { background: var(--success); color: #fff; }
+
+/* ── DATA TABLE ── */
+.table-container { overflow-x: auto; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; }
+th {
+  text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary);
+  background: var(--surface-2); border-bottom: 1px solid var(--border-light);
+  white-space: nowrap; position: sticky; top: 0; z-index: 2;
+  cursor: pointer; user-select: none;
+}
+th:hover { color: var(--text-secondary); }
+td {
+  padding: 12px 14px; font-size: 13px; border-bottom: 1px solid var(--border-light);
+  color: var(--text); vertical-align: middle;
+}
+tr:hover td { background: var(--primary-50); }
+tr:last-child td { border-bottom: none; }
+
+/* ── BADGES / STATUS ── */
+.badge-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  font-size: 11px; font-weight: 600;
+}
+.badge-active { background: var(--success-bg); color: var(--success); }
+.badge-expired { background: var(--danger-bg); color: var(--danger); }
+.badge-renewed { background: #e8f5e9; color: #2e7d32; }
+.badge-upcoming { background: var(--info-bg); color: var(--info); }
+.badge-hot { background: #FDE68A; color: #92400E; }
+.badge-warm { background: #FED7AA; color: #9A3412; }
+.badge-cold { background: #DBEAFE; color: #1E40AF; }
+
+/* ── FORMS ── */
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary);
+  margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px;
+}
+.form-group label .required { color: var(--danger); }
+.form-control {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+  border-radius: var(--radius); font-size: 13px; font-family: var(--font);
+  color: var(--text); background: #fff;
+  transition: all var(--transition);
+}
+.form-control:focus {
+  outline: none; border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+.form-control::placeholder { color: var(--text-tertiary); }
+select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235F6B7A' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px); z-index: 200;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: #fff; border-radius: var(--radius-xl); width: 100%; max-width: 580px;
+  max-height: 90vh; overflow: hidden; box-shadow: var(--shadow-xl);
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; border-bottom: 1px solid var(--border-light);
+}
+.modal-header h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; }
+.modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-tertiary); padding: 4px 8px; border-radius: 8px; }
+.modal-close:hover { background: var(--surface-3); color: var(--text); }
+.modal-body { padding: 20px 24px; overflow-y: auto; max-height: calc(90vh - 140px); }
+.modal-footer { padding: 16px 24px; border-top: 1px solid var(--border-light); display: flex; justify-content: flex-end; gap: 10px; }
+
+/* ── TOAST ── */
+.toast-container { position: fixed; top: 80px; right: 20px; z-index: 300; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  display: flex; align-items: center; gap: 10px; padding: 14px 18px;
+  border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-lg);
+  border-left: 4px solid; font-size: 13px; animation: toastIn 0.3s ease;
+  max-width: 380px;
+}
+@keyframes toastIn { from { opacity: 0; transform: translateX(20px); } }
+.toast-success { border-left-color: var(--success); }
+.toast-error { border-left-color: var(--danger); }
+.toast-warning { border-left-color: var(--warning); }
+.toast i { font-size: 16px; }
+.toast-success i { color: var(--success); }
+.toast-error i { color: var(--danger); }
+.toast-warning i { color: var(--warning); }
+
+/* ── KANBAN BOARD ── */
+.kanban { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; min-height: 400px; }
+.kanban-column {
+  min-width: 260px; max-width: 280px; flex-shrink: 0;
+  background: var(--surface-2); border-radius: var(--radius-lg); padding: 14px;
+}
+.kanban-column-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--border);
+}
+.kanban-column-header h4 { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+.kanban-column-header .count {
+  font-size: 11px; font-weight: 600; background: var(--border);
+  color: var(--text-tertiary); padding: 2px 8px; border-radius: var(--radius-full);
+}
+.kanban-card {
+  background: #fff; border: 1px solid var(--border-light); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 8px; cursor: grab;
+  transition: all var(--transition);
+}
+.kanban-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.kanban-card .lead-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.kanban-card .lead-info { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+.kanban-card .lead-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-tertiary); }
+.kanban-card .lead-meta .priority { padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+
+/* ── EMPTY STATE ── */
+.empty-state { text-align: center; padding: 60px 20px; }
+.empty-state i { font-size: 48px; color: var(--border); margin-bottom: 16px; }
+.empty-state h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+.empty-state p { font-size: 13px; color: var(--text-tertiary); max-width: 320px; margin: 0 auto 20px; }
+
+/* ── LOADING ── */
+.spinner {
+  width: 32px; height: 32px; border: 3px solid var(--border);
+  border-top-color: var(--primary); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-overlay {
+  position: absolute; inset: 0; background: rgba(255,255,255,0.8);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10; backdrop-filter: blur(2px);
+}
+
+/* ── RECEIPT ── */
+.receipt {
+  max-width: 420px; margin: 0 auto; background: #fff;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 30px 28px; font-size: 13px;
+}
+.receipt-header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed var(--border); }
+.receipt-header img.receipt-logo { max-height: 50px; max-width: 120px; object-fit: contain; margin-bottom: 6px; }
+.receipt-header h2 { font-family: var(--font-display); font-size: 20px; color: var(--primary-dark); }
+.receipt-header p { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+.receipt-row { display: flex; justify-content: space-between; padding: 6px 0; }
+.receipt-row .label { color: var(--text-tertiary); }
+.receipt-row .value { font-weight: 600; text-align: right; }
+.receipt-total { font-size: 22px; font-weight: 700; color: var(--primary); text-align: center; margin: 16px 0; }
+.receipt-footer { text-align: center; margin-top: 16px; padding-top: 14px; border-top: 2px dashed var(--border); font-size: 11px; color: var(--text-tertiary); }
+.receipt-signature { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 0; }
+.receipt-sig-block { text-align: center; width: 45%; }
+.receipt-sig-line { border-top: 1px solid var(--text-tertiary); margin-top: 40px; padding-top: 6px; font-size: 11px; color: var(--text-tertiary); }
+.receipt-amount-words { background: var(--surface-2); padding: 8px 12px; border-radius: var(--radius); font-size: 12px; margin: 8px 0 4px; font-style: italic; color: var(--text-secondary); }
+
+/* ── SETUP SCREEN ── */
+.setup-screen {
+  display: flex; align-items: center; justify-content: center;
+  height: 100vh; padding: 20px;
+}
+.setup-card {
+  background: #fff; border-radius: var(--radius-xl); padding: 40px;
+  max-width: 480px; width: 100%; box-shadow: var(--shadow-xl);
+  text-align: center;
+}
+.setup-card .brand-icon {
+  width: 64px; height: 64px; border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; color: #fff; font-weight: 700;
+  font-family: var(--font-display); margin: 0 auto 20px;
+}
+.setup-card h2 { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.setup-card p { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+.setup-card .form-control { text-align: center; font-size: 14px; }
+.setup-card .btn { width: 100%; justify-content: center; padding: 12px; font-size: 15px; margin-top: 12px; }
+.setup-card .help-text { font-size: 12px; color: var(--text-tertiary); margin-top: 16px; line-height: 1.6; }
+
+/* ── PROFILE VIEW ── */
+.profile-header {
+  display: flex; align-items: center; gap: 18px; margin-bottom: 24px;
+  padding: 24px; background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  border-radius: var(--radius-xl); color: #fff;
+}
+.profile-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); display: flex; align-items: center;
+  justify-content: center; font-size: 24px; font-weight: 700;
+  font-family: var(--font-display); border: 2px solid rgba(255,255,255,0.3);
+}
+.profile-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+.profile-meta { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+/* ── CHARTS AREA ── */
+.chart-container { position: relative; width: 100%; height: 300px; }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); width: 280px; }
+  .sidebar.open { transform: translateX(0); }
+  .header { left: 0; padding: 0 16px; }
+  .header .mobile-toggle { display: flex; }
+  .header .search-box { min-width: 0; flex: 1; }
+  .main { margin-left: 0; padding: 16px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 14px 16px; }
+  .stat-card .stat-value { font-size: 22px; }
+  .form-row { grid-template-columns: 1fr; }
+  .kanban { flex-direction: column; }
+  .kanban-column { min-width: 100%; max-width: 100%; }
+  .mobile-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 99; display: none;
+  }
+  .mobile-overlay.show { display: block; }
+  .header .page-subtitle { display: none; }
+  .modal { max-width: 100%; border-radius: var(--radius-lg); }
+  .profile-header { flex-direction: column; text-align: center; }
+}
+
+/* ── MOBILE BOTTOM NAV ── */
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+    background: #fff; border-top: 1px solid var(--border-light);
+    padding: 6px 0; z-index: 95; padding-bottom: env(safe-area-inset-bottom, 6px);
+  }
+  .bottom-nav .bnav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    gap: 3px; padding: 6px 0; font-size: 10px; color: var(--text-tertiary);
+    cursor: pointer; transition: color var(--transition);
+  }
+  .bottom-nav .bnav-item.active { color: var(--primary); }
+  .bottom-nav .bnav-item i { font-size: 18px; }
+  .main { padding-bottom: 80px; }
+}
+@media (min-width: 769px) { .bottom-nav { display: none; } }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 20px; }
+.timeline-item .tl-dot {
+  position: absolute; left: -24px; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--primary-light); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+.timeline-item .tl-date { font-size: 11px; color: var(--text-tertiary); margin-bottom: 4px; }
+.timeline-item .tl-content { font-size: 13px; color: var(--text); }
+.timeline-item .tl-amount { font-weight: 700; color: var(--primary); }
+
+/* ── SETTINGS TABS ── */
+.settings-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 2px solid var(--border-light); }
+.settings-tab {
+  padding: 10px 18px; font-size: 13px; font-weight: 600;
+  color: var(--text-tertiary); cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all var(--transition);
+}
+.settings-tab:hover { color: var(--text-secondary); }
+.settings-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.settings-panel { display: none; }
+.settings-panel.active { display: block; }
+
+/* ── QUICK ACTION FAB ── */
+.fab {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff; border: none; font-size: 22px; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(27,94,32,0.35);
+  transition: all var(--transition); z-index: 80;
+  display: flex; align-items: center; justify-content: center;
+}
+.fab:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(27,94,32,0.4); }
+@media (max-width: 768px) { .fab { bottom: 80px; right: 16px; width: 48px; height: 48px; } }
+
+/* ── MISC ── */
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-muted { color: var(--text-tertiary); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+.text-warning { color: var(--warning); }
+.text-primary { color: var(--primary); }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+.fs-12 { font-size: 12px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.gap-12 { gap: 12px; }
+.d-flex { display: flex; }
+.align-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.currency::before { content: '\20B9'; }
+.tag { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ██ SETUP SCREEN (shown first time) ██ -->
+<div id="setupScreen" class="setup-screen">
+  <div class="setup-card">
+    <div class="brand-icon">FK</div>
+    <h2>Welcome to FitKatha</h2>
+    <p>Connect your Google Sheet to get started. Deploy the backend script and paste the web app URL below.</p>
+    <div class="form-group" style="text-align:left">
+      <label>Google Apps Script Web App URL</label>
+      <input type="url" id="apiUrlInput" class="form-control" placeholder="https://script.google.com/macros/s/.../exec" style="text-align:left">
+    </div>
+    <button class="btn btn-primary" onclick="connectAPI()">
+      <i class="fas fa-plug"></i> Connect &amp; Launch
+    </button>
+    <button class="btn btn-outline" onclick="launchDemo()" style="width:100%;justify-content:center;margin-top:8px">
+      <i class="fas fa-play"></i> Try Demo Mode (no sheet needed)
+    </button>
+    <p class="help-text">
+      <strong>How to get the URL:</strong><br>
+      1. Open your FitKatha Google Sheet<br>
+      2. Go to Extensions &rarr; Apps Script<br>
+      3. Paste the FitKatha_Backend.gs code<br>
+      4. Click Deploy &rarr; New Deployment &rarr; Web App<br>
+      5. Set access to "Anyone" &rarr; Deploy<br>
+      6. Copy the URL and paste above
+    </p>
+  </div>
+</div>
+
+<!-- ██ APP SHELL ██ -->
+<div id="appShell" style="display:none">
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon" id="sidebarBrandIcon">FK</div>
+    <div class="brand-text">
+      <h1 id="sidebarBrandName">FitKatha</h1>
+      <p>Wellness Management</p>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-title">Main</div>
+      <div class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')">
+        <i class="fas fa-th-large"></i> Dashboard
+      </div>
+      <div class="nav-item" data-page="customers" onclick="navigate('customers')">
+        <i class="fas fa-users"></i> Customers
+      </div>
+      <div class="nav-item" data-page="payments" onclick="navigate('payments')">
+        <i class="fas fa-credit-card"></i> Payments
+      </div>
+      <div class="nav-item" data-page="leads" onclick="navigate('leads')">
+        <i class="fas fa-funnel-dollar"></i> Leads
+        <span class="badge" id="leadsBadge" style="display:none">0</span>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">Manage</div>
+      <div class="nav-item" data-page="expiry" onclick="navigate('expiry')">
+        <i class="fas fa-clock"></i> Expiry Tracker
+        <span class="badge" id="expiryBadge" style="display:none">0</span>
+      </div>
+      <div class="nav-item" data-page="plans" onclick="navigate('plans')">
+        <i class="fas fa-tags"></i> Plans &amp; Pricing
+      </div>
+      <div class="nav-item" data-page="revenue" onclick="navigate('revenue')">
+        <i class="fas fa-chart-line"></i> Revenue
+      </div>
+      <div class="nav-item" data-page="expenses" onclick="navigate('expenses')">
+        <i class="fas fa-wallet"></i> Expenses
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">System</div>
+      <div class="nav-item" data-page="settings" onclick="navigate('settings')">
+        <i class="fas fa-cog"></i> Settings
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="api-status">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Connecting...</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+  <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div>
+    <div class="page-title" id="pageTitle">Dashboard</div>
+    <div class="page-subtitle" id="pageSubtitle">Welcome back to FitKatha</div>
+  </div>
+  <div class="header-actions">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Search customers, payments..." onkeydown="if(event.key==='Enter')handleGlobalSearch(this.value)" oninput="debounceSearch(this.value)">
+    </div>
+    <button class="btn-icon" onclick="showNotifications()" title="Notifications">
+      <i class="fas fa-bell"></i>
+      <span class="notif-dot" id="notifDot" style="display:none"></span>
+    </button>
+    <button class="btn-icon" onclick="refreshData()" title="Refresh data">
+      <i class="fas fa-sync-alt"></i>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main" id="mainContent">
+
+<!-- ═══ DASHBOARD PAGE ═══ -->
+<div class="page active" id="page-dashboard">
+  <div class="stats-grid" id="dashStats"></div>
+  <div class="grid-2" style="gap:16px">
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-exclamation-triangle text-warning" style="margin-right:8px"></i>Expiring Soon</h3>
+        <button class="btn btn-sm btn-outline" onclick="navigate('expiry')">View all</button>
+      </div>
+      <div class="card-body" id="dashExpiring">
+        <div class="empty-state"><i class="fas fa-check-circle text-success"></i><p>No expirations this week</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-phone text-info" style="margin-right:8px"></i>Today's Follow-ups</h3>
+        <button class="btn btn-sm btn-outline" onclick="navigate('leads')">View all</button>
+      </div>
+      <div class="card-body" id="dashFollowups">
+        <div class="empty-state"><i class="fas fa-coffee"></i><p>No follow-ups scheduled today</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-16">
+    <div class="card-header">
+      <h3><i class="fas fa-history" style="margin-right:8px;color:var(--text-tertiary)"></i>Recent Activity</h3>
+    </div>
+    <div class="card-body" id="dashActivity">
+      <div class="timeline" id="activityTimeline"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CUSTOMERS PAGE ═══ -->
+<div class="page" id="page-customers">
+  <div class="d-flex align-center justify-between mb-16">
+    <div class="d-flex align-center gap-12">
+      <select class="form-control" id="custFilterStatus" onchange="APP.page.customers=1;filterCustomers()" style="width:140px">
+        <option value="all">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Expired">Expired</option>
+        <option value="Upcoming">Upcoming</option>
+        <option value="Renewed">Renewed</option>
+      </select>
+      <select class="form-control" id="custFilterService" onchange="APP.page.customers=1;filterCustomers()" style="width:160px">
+        <option value="all">All Services</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="showAddCustomerModal()">
+      <i class="fas fa-plus"></i> Add Customer
+    </button>
+  </div>
+  <div class="card">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortTable('customers','enrollmentId')" style="cursor:pointer">ENR ID <i id="sortIcon_customers_enrollmentId" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','name')" style="cursor:pointer">Customer <i id="sortIcon_customers_name" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','mobile')" style="cursor:pointer">Mobile <i id="sortIcon_customers_mobile" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','service')" style="cursor:pointer">Service <i id="sortIcon_customers_service" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','planType')" style="cursor:pointer">Plan <i id="sortIcon_customers_planType" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','joiningDate')" style="cursor:pointer">Joining <i id="sortIcon_customers_joiningDate" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','planExpiry')" style="cursor:pointer">Expiry <i id="sortIcon_customers_planExpiry" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','status')" style="cursor:pointer">Status <i id="sortIcon_customers_status" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('customers','dueAmount')" style="cursor:pointer">Due (&#8377;) <i id="sortIcon_customers_dueAmount" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="customersTableBody"></tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex align-center justify-between">
+      <span class="text-muted fs-12" id="custCount">0 customers</span>
+      <div class="d-flex gap-12">
+        <button class="btn btn-sm btn-outline" onclick="exportCustomers()"><i class="fas fa-download"></i> Export</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAYMENTS PAGE ═══ -->
+<div class="page" id="page-payments">
+  <div class="d-flex align-center justify-between mb-16">
+    <div class="d-flex align-center gap-12">
+      <input type="month" class="form-control" id="payFilterMonth" onchange="APP.page.payments=1;filterPayments()" style="width:160px">
+      <select class="form-control" id="payFilterMode" onchange="APP.page.payments=1;filterPayments()" style="width:140px">
+        <option value="all">All Modes</option>
+      </select>
+    </div>
+    <button class="btn btn-accent" onclick="showAddPaymentModal()">
+      <i class="fas fa-plus"></i> Record Payment
+    </button>
+  </div>
+  <div class="card">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Receipt</th>
+            <th onclick="sortTable('payments','date')">Date <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th>Customer</th>
+            <th>ENR ID</th>
+            <th>Service</th>
+            <th onclick="sortTable('payments','amount')">Amount (&#8377;) <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th>Mode</th>
+            <th>Balance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="paymentsTableBody"></tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex align-center justify-between">
+      <span class="text-muted fs-12" id="payCount">0 payments</span>
+      <span class="fw-600" id="payTotal">Total: &#8377;0</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LEADS PAGE ═══ -->
+<div class="page" id="page-leads">
+  <div class="stats-grid" id="leadStats"></div>
+  <div class="d-flex align-center justify-between mb-16">
+    <div class="d-flex align-center gap-12">
+      <button class="btn btn-sm btn-outline active" id="leadsViewBoard" onclick="setLeadsView('board')"><i class="fas fa-columns"></i> Board</button>
+      <button class="btn btn-sm btn-outline" id="leadsViewList" onclick="setLeadsView('list')"><i class="fas fa-list"></i> List</button>
+      <select class="form-control" id="leadFilterStage" onchange="filterLeads()" style="width:150px">
+        <option value="all">All Stages</option>
+      </select>
+      <select class="form-control" id="leadFilterPriority" onchange="filterLeads()" style="width:130px">
+        <option value="all">All Priority</option>
+        <option value="Hot">Hot</option>
+        <option value="Warm">Warm</option>
+        <option value="Cold">Cold</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="showAddLeadModal()">
+      <i class="fas fa-plus"></i> Add Lead
+    </button>
+  </div>
+  <div id="leadsBoard" class="kanban"></div>
+  <div id="leadsList" style="display:none" class="card">
+    <div class="table-container">
+      <table>
+        <thead><tr><th onclick="sortTable('leads','leadId')">Lead ID <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th><th onclick="sortTable('leads','name')">Name <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th><th>Mobile</th><th>Source</th><th>Interest</th><th>Stage</th><th>Priority</th><th onclick="sortTable('leads','createdDate')">Created <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th><th onclick="sortTable('leads','nextFollowUpDate')">Follow-up <i class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th><th>Actions</th></tr></thead>
+        <tbody id="leadsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EXPIRY TRACKER PAGE ═══ -->
+<div class="page" id="page-expiry">
+  <div class="stats-grid" id="expiryStats"></div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Expiring &amp; Expired Customers</h3>
+      <select class="form-control" id="expiryFilter" onchange="filterExpiry()" style="width:160px">
+        <option value="all">All</option>
+        <option value="expired">Expired</option>
+        <option value="soon">Expiring Soon (7 days)</option>
+        <option value="month">This Month</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead><tr><th>Customer</th><th>ENR ID</th><th>Service</th><th>Expiry Date</th><th>Days Left</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="expiryTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PLANS & PRICING PAGE ═══ -->
+<div class="page" id="page-plans">
+  <div class="d-flex align-center justify-between mb-16">
+    <p class="text-muted">Manage your services, plan types, pricing, and batch sizes</p>
+    <button class="btn btn-primary" onclick="showAddPlanModal()"><i class="fas fa-plus"></i> Add Plan</button>
+  </div>
+  <div class="card">
+    <div class="table-container">
+      <table>
+        <thead><tr><th>Plan ID</th><th>Service</th><th>Plan Type</th><th>Duration</th><th>Price (&#8377;)</th><th>Timing</th><th>Batch Size</th><th>Enrolled</th><th>Availability</th><th>Actions</th></tr></thead>
+        <tbody id="plansTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ REVENUE PAGE ═══ -->
+<div class="page" id="page-revenue">
+  <div class="stats-grid" id="revenueStats"></div>
+  <div class="grid-2" style="gap:16px">
+    <div class="card">
+      <div class="card-header"><h3>Monthly Revenue Trend</h3></div>
+      <div class="card-body"><div class="chart-container"><canvas id="revenueChart"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Revenue by Service</h3></div>
+      <div class="card-body"><div class="chart-container"><canvas id="serviceChart"></canvas></div></div>
+    </div>
+  </div>
+  <div class="card mt-16">
+    <div class="card-header"><h3>Monthly Breakdown</h3></div>
+    <div class="table-container">
+      <table>
+        <thead><tr><th>Month</th><th>Revenue (&#8377;)</th><th>Expenses (&#8377;)</th><th>Net Profit</th><th>Payments</th><th>New Enrollments</th><th>Active</th></tr></thead>
+        <tbody id="revenueTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card mt-16">
+    <div class="card-header"><h3>Profit &amp; Loss</h3></div>
+    <div class="card-body"><div class="chart-container"><canvas id="plChart"></canvas></div></div>
+  </div>
+  <div class="card mt-16">
+    <div class="card-header"><h3>Month-wise Service Revenue</h3></div>
+    <div class="table-container">
+      <table>
+        <thead id="serviceRevHead"></thead>
+        <tbody id="serviceRevBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ EXPENSES PAGE ═══ -->
+<div class="page" id="page-expenses">
+  <div class="stats-grid" id="expenseStats"></div>
+  <div class="grid-2" style="gap:16px">
+    <div class="card">
+      <div class="card-header"><h3>Category Breakdown</h3></div>
+      <div class="card-body"><div class="chart-container"><canvas id="expenseCatChart"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Monthly Expense Trend</h3></div>
+      <div class="card-body"><div class="chart-container"><canvas id="expenseMonthChart"></canvas></div></div>
+    </div>
+  </div>
+  <div class="card mt-16">
+    <div class="card-header">
+      <div class="d-flex align-center gap-12">
+        <h3>Expense Records</h3>
+        <input type="month" class="form-control" id="expFilterMonth" onchange="APP.page.expenses=1;filterExpenses()" style="width:160px">
+        <select class="form-control" id="expFilterCat" onchange="APP.page.expenses=1;filterExpenses()" style="width:160px">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="showAddExpenseModal()"><i class="fas fa-plus"></i> Add Expense</button>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortTable('expenses','expId')" style="cursor:pointer">ID <i id="sortIcon_expenses_expId" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('expenses','date')" style="cursor:pointer">Date <i id="sortIcon_expenses_date" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('expenses','category')" style="cursor:pointer">Category <i id="sortIcon_expenses_category" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th onclick="sortTable('expenses','amount')" style="cursor:pointer">Amount <i id="sortIcon_expenses_amount" class="fas fa-sort" style="font-size:10px;opacity:0.4"></i></th>
+            <th>Paid To</th>
+            <th>Mode</th>
+            <th>Note</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expenseTableBody"></tbody>
+      </table>
+    </div>
+    <div class="d-flex align-center justify-between" style="padding:12px 16px;border-top:1px solid var(--border-light)">
+      <span class="text-muted fs-12" id="expCount">0 expenses</span>
+      <div id="expPagination"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SETTINGS PAGE ═══ -->
+<div class="page" id="page-settings">
+  <div class="settings-tabs">
+    <div class="settings-tab active" data-tab="general" onclick="switchSettingsTab('general')">General</div>
+    <div class="settings-tab" data-tab="services" onclick="switchSettingsTab('services')">Services</div>
+    <div class="settings-tab" data-tab="fields" onclick="switchSettingsTab('fields')">Custom Fields</div>
+    <div class="settings-tab" data-tab="dropdowns" onclick="switchSettingsTab('dropdowns')">Dropdowns</div>
+    <div class="settings-tab" data-tab="data" onclick="switchSettingsTab('data')">Data</div>
+  </div>
+
+  <div class="settings-panel active" id="settingsPanel-general">
+    <div class="card">
+      <div class="card-header"><h3>Business Profile</h3></div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group"><label>Business Name</label><input type="text" class="form-control" id="setBizName" value="The Fit Katha Wellness"></div>
+          <div class="form-group"><label>Phone</label><input type="text" class="form-control" id="setBizPhone"></div>
+        </div>
+        <div class="form-group"><label>Address</label><input type="text" class="form-control" id="setBizAddress"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" class="form-control" id="setBizEmail"></div>
+          <div class="form-group"><label>Logo URL</label><input type="url" class="form-control" id="setBizLogo" placeholder="https://..."></div>
+        </div>
+        <div class="form-group"><label>API Endpoint</label><input type="text" class="form-control" id="setApiUrl" readonly style="background:var(--surface-3)"></div>
+        <button class="btn btn-primary" onclick="saveSettings()"><i class="fas fa-save"></i> Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-panel" id="settingsPanel-services">
+    <div class="card">
+      <div class="card-header"><h3>Manage Services</h3><button class="btn btn-sm btn-primary" onclick="addServiceRow()"><i class="fas fa-plus"></i> Add Service</button></div>
+      <div class="card-body" id="servicesList"></div>
+    </div>
+  </div>
+
+  <div class="settings-panel" id="settingsPanel-fields">
+    <div class="card">
+      <div class="card-header"><h3>Custom Customer Fields</h3><button class="btn btn-sm btn-primary" onclick="addCustomField()"><i class="fas fa-plus"></i> Add Field</button></div>
+      <div class="card-body">
+        <p class="text-muted mb-16">Add extra fields that appear on the customer registration form. Core fields (Name, Mobile, Service, etc.) cannot be removed.</p>
+        <div id="customFieldsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-panel" id="settingsPanel-dropdowns">
+    <div class="card">
+      <div class="card-header"><h3>Dropdown Options</h3></div>
+      <div class="card-body">
+        <div class="form-group"><label>Customer Sources (one per line)</label><textarea class="form-control" id="setSources" rows="6" style="resize:vertical"></textarea></div>
+        <div class="form-group"><label>Purposes (one per line)</label><textarea class="form-control" id="setPurposes" rows="6" style="resize:vertical"></textarea></div>
+        <div class="form-group"><label>Payment Modes (one per line)</label><textarea class="form-control" id="setPayModes" rows="4" style="resize:vertical"></textarea></div>
+        <div class="form-group"><label>Expense Categories (one per line)</label><textarea class="form-control" id="setExpCats" rows="6" style="resize:vertical"></textarea></div>
+        <button class="btn btn-primary" onclick="saveDropdowns()"><i class="fas fa-save"></i> Save Dropdowns</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-panel" id="settingsPanel-data">
+    <div class="card">
+      <div class="card-header"><h3>Data Management</h3></div>
+      <div class="card-body">
+        <div class="grid-2">
+          <div style="padding:20px;background:var(--success-bg);border-radius:var(--radius);text-align:center">
+            <i class="fas fa-download" style="font-size:24px;color:var(--success);margin-bottom:8px"></i>
+            <h4 style="font-size:14px;margin-bottom:4px">Export Data</h4>
+            <p class="text-muted fs-12 mb-16">Download all data as CSV</p>
+            <button class="btn btn-sm btn-success" onclick="exportAllData()"><i class="fas fa-file-csv"></i> Export CSV</button>
+          </div>
+          <div style="padding:20px;background:var(--info-bg);border-radius:var(--radius);text-align:center">
+            <i class="fas fa-sync" style="font-size:24px;color:var(--info);margin-bottom:8px"></i>
+            <h4 style="font-size:14px;margin-bottom:4px">Sync with Sheet</h4>
+            <p class="text-muted fs-12 mb-16">Force refresh from Google Sheet</p>
+            <button class="btn btn-sm btn-outline" onclick="refreshData()"><i class="fas fa-sync-alt"></i> Refresh Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FAB -->
+<button class="fab" onclick="showQuickActions()" title="Quick Actions"><i class="fas fa-plus"></i></button>
+
+<!-- BOTTOM NAV (Mobile) -->
+<div class="bottom-nav">
+  <div class="bnav-item active" data-page="dashboard" onclick="navigate('dashboard')"><i class="fas fa-th-large"></i><span>Home</span></div>
+  <div class="bnav-item" data-page="customers" onclick="navigate('customers')"><i class="fas fa-users"></i><span>Customers</span></div>
+  <div class="bnav-item" data-page="payments" onclick="navigate('payments')"><i class="fas fa-credit-card"></i><span>Payments</span></div>
+  <div class="bnav-item" data-page="leads" onclick="navigate('leads')"><i class="fas fa-funnel-dollar"></i><span>Leads</span></div>
+  <div class="bnav-item" onclick="toggleSidebar()"><i class="fas fa-ellipsis-h"></i><span>More</span></div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+</div><!-- end appShell -->
+
+<!-- ═══ MODALS ═══ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Modal</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- ═══ CUSTOMER PROFILE MODAL ═══ -->
+<div class="modal-overlay" id="profileOverlay">
+  <div class="modal" style="max-width:680px">
+    <div class="modal-header">
+      <h3>Customer Profile</h3>
+      <button class="modal-close" onclick="closeProfile()">&times;</button>
+    </div>
+    <div class="modal-body" id="profileBody" style="max-height:calc(90vh - 80px)"></div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<script>
+// ═══════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════
+const APP = {
+  apiUrl: '',
+  isDemo: false,
+  data: { customers: [], payments: [], plans: [], leads: [], expenses: [], settings: {} },
+  currentPage: 'dashboard',
+  charts: {},
+  sortState: {},
+  page: { customers: 1, payments: 1, leads: 1, expenses: 1 },
+  pageSize: 25
+};
+
+// Demo data for trying without backend
+const DEMO = {
+  customers: [
+    { enrollmentId:'ENR-001', name:'BHANWAR SINGH', mobile:'9351320400', gender:'M', source:'Walk-in', purpose:'Weight Loss', address:'Jaipur', service:'Combo(Y+M+D+Z)', planType:'Monthly', planPrice:2000, discount:500, joiningDate:'2025-12-12', planExpiry:'2026-01-12', totalPaid:1500, dueAmount:0, dueDate:'', emiCount:1, status:'Expired', remarks:'Plan expired, renewal pending', batchWarning:'' },
+    { enrollmentId:'ENR-002', name:'BRIJESH SINGH', mobile:'9829138635', gender:'M', source:'Walk-in', purpose:'Weight Loss', address:'Jaipur', service:'Combo(Y+M+D+Z)', planType:'Yearly', planPrice:12000, discount:0, joiningDate:'2026-01-04', planExpiry:'2027-01-04', totalPaid:6000, dueAmount:6000, dueDate:'2026-02-15', emiCount:2, status:'Active', remarks:'EMI 2 parts, \u20B96,000 pending', batchWarning:'' },
+    { enrollmentId:'ENR-003', name:'KOMAL JAIN', mobile:'8003591840', gender:'F', source:'Walk-in', purpose:'Weight Loss', address:'Jaipur', service:'Combo(Y+M+D+Z)', planType:'Quarterly', planPrice:5000, discount:500, joiningDate:'2025-10-07', planExpiry:'2026-01-07', totalPaid:4500, dueAmount:0, dueDate:'', emiCount:1, status:'Expired', remarks:'Fully paid', batchWarning:'' },
+    { enrollmentId:'ENR-005', name:'HAPPY KANWAR', mobile:'9876543211', gender:'F', source:'Instagram', purpose:'Fitness', address:'Jaipur', service:'Yoga', planType:'Quarterly', planPrice:4999, discount:0, joiningDate:'2026-01-10', planExpiry:'2026-04-10', totalPaid:4999, dueAmount:0, dueDate:'', emiCount:1, status:'Active', remarks:'Fully paid', batchWarning:'' },
+    { enrollmentId:'ENR-008', name:'SHREYA JI', mobile:'9876543212', gender:'F', source:'Reference', purpose:'Yoga', address:'Jaipur', service:'Yoga', planType:'Half Yearly', planPrice:8999, discount:500, joiningDate:'2026-01-01', planExpiry:'2026-07-01', totalPaid:8499, dueAmount:0, dueDate:'', emiCount:2, status:'Active', remarks:'Fully paid', batchWarning:'' },
+    { enrollmentId:'ENR-010', name:'PRIYA SHARMA', mobile:'9876543213', gender:'F', source:'Instagram', purpose:'Dance', address:'Jaipur', service:'Dance', planType:'Monthly', planPrice:2000, discount:0, joiningDate:'2026-03-01', planExpiry:'2026-04-01', totalPaid:2000, dueAmount:0, dueDate:'', emiCount:1, status:'Active', remarks:'Fully paid', batchWarning:'' },
+    { enrollmentId:'ENR-015', name:'RAHUL VERMA', mobile:'9876543214', gender:'M', source:'Facebook', purpose:'Fitness', address:'Jaipur', service:'Combo(Y+M+D+Z)', planType:'Half Yearly', planPrice:8000, discount:1000, joiningDate:'2026-02-15', planExpiry:'2026-08-15', totalPaid:4000, dueAmount:3000, dueDate:'2026-05-15', emiCount:3, status:'Active', remarks:'EMI 3 parts, \u20B93,000 pending', batchWarning:'' },
+    { enrollmentId:'ENR-023', name:'PANKAJ', mobile:'9876543215', gender:'M', source:'Walk-in', purpose:'Weight Loss', address:'Jaipur', service:'Combo(Y+M+D+Z)', planType:'Monthly', planPrice:2000, discount:0, joiningDate:'2026-02-27', planExpiry:'2026-03-27', totalPaid:2000, dueAmount:0, dueDate:'', emiCount:1, status:'Expired', remarks:'Plan expired', batchWarning:'' },
+    { enrollmentId:'ENR-037', name:'PANKAJ', mobile:'9876543215', gender:'M', source:'Walk-in', purpose:'Fitness', address:'Jaipur', service:'UMS', planType:'Quarterly', planPrice:6999, discount:0, joiningDate:'2026-04-02', planExpiry:'2026-07-02', totalPaid:4000, dueAmount:2999, dueDate:'2026-05-02', emiCount:2, status:'Active', remarks:'EMI 2 parts, \u20B92,999 pending', batchWarning:'' },
+  ],
+  payments: [
+    { receipt:'RCP-001', date:'2026-01-02', name:'BHANWAR SINGH', enrollmentId:'ENR-001', mobile:'9351320400', service:'Combo(Y+M+D+Z)', planType:'Monthly', planPrice:2000, emi:'1 of 1', amount:1500, mode:'Online', balance:0, remarks:'Full payment' },
+    { receipt:'RCP-002', date:'2026-01-24', name:'HAPPY KANWAR', enrollmentId:'ENR-005', mobile:'9876543211', service:'Yoga', planType:'Quarterly', planPrice:4999, emi:'1 of 1', amount:4999, mode:'Cash', balance:0, remarks:'Full payment' },
+    { receipt:'RCP-003', date:'2026-01-03', name:'SHREYA JI', enrollmentId:'ENR-008', mobile:'9876543212', service:'Yoga', planType:'Half Yearly', planPrice:8999, emi:'1 of 2', amount:5000, mode:'Cash', balance:3499, remarks:'EMI 1 of 2 | Bal: \u20B93,499' },
+    { receipt:'RCP-004', date:'2026-02-03', name:'SHREYA JI', enrollmentId:'ENR-008', mobile:'9876543212', service:'Yoga', planType:'Half Yearly', planPrice:8999, emi:'2 of 2', amount:3499, mode:'UPI', balance:0, remarks:'EMI 2 of 2 | Paid in full' },
+    { receipt:'RCP-005', date:'2026-03-01', name:'PRIYA SHARMA', enrollmentId:'ENR-010', mobile:'9876543213', service:'Dance', planType:'Monthly', planPrice:2000, emi:'1 of 1', amount:2000, mode:'UPI', balance:0, remarks:'Full payment' },
+    { receipt:'RCP-006', date:'2026-02-15', name:'RAHUL VERMA', enrollmentId:'ENR-015', mobile:'9876543214', service:'Combo(Y+M+D+Z)', planType:'Half Yearly', planPrice:8000, emi:'1 of 3', amount:2500, mode:'Card', balance:4500, remarks:'EMI 1 of 3' },
+    { receipt:'RCP-007', date:'2026-03-15', name:'RAHUL VERMA', enrollmentId:'ENR-015', mobile:'9876543214', service:'Combo(Y+M+D+Z)', planType:'Half Yearly', planPrice:8000, emi:'2 of 3', amount:1500, mode:'Cash', balance:3000, remarks:'EMI 2 of 3' },
+    { receipt:'RCP-008', date:'2026-02-28', name:'PANKAJ', enrollmentId:'ENR-023', mobile:'9876543215', service:'Combo(Y+M+D+Z)', planType:'Monthly', planPrice:2000, emi:'1 of 1', amount:2000, mode:'Cash', balance:0, remarks:'Full payment' },
+    { receipt:'RCP-009', date:'2026-04-05', name:'PANKAJ', enrollmentId:'ENR-037', mobile:'9876543215', service:'UMS', planType:'Quarterly', planPrice:6999, emi:'1 of 2', amount:4000, mode:'Online', balance:2999, remarks:'EMI 1 of 2' },
+    { receipt:'RCP-010', date:'2026-01-05', name:'BRIJESH SINGH', enrollmentId:'ENR-002', mobile:'9829138635', service:'Combo(Y+M+D+Z)', planType:'Yearly', planPrice:12000, emi:'1 of 2', amount:6000, mode:'Online', balance:6000, remarks:'EMI 1 of 2' },
+    { receipt:'RCP-011', date:'2025-10-08', name:'KOMAL JAIN', enrollmentId:'ENR-003', mobile:'8003591840', service:'Combo(Y+M+D+Z)', planType:'Quarterly', planPrice:5000, emi:'1 of 1', amount:4500, mode:'Cash', balance:0, remarks:'Full payment (after discount)' },
+  ],
+  plans: [
+    { planId:'C-M1', service:'Combo(Y+M+D+Z)', planType:'Monthly', duration:1, price:2000, timing:'6:00 AM - 7:00 AM', maxBatch:30, enrolled:4, pastEnrolled:2, availability:'Available (26 left)', status:'Active' },
+    { planId:'C-Q1', service:'Combo(Y+M+D+Z)', planType:'Quarterly', duration:3, price:5000, timing:'6:00 AM - 7:00 AM', maxBatch:30, enrolled:1, pastEnrolled:1, availability:'Available (29 left)', status:'Active' },
+    { planId:'C-H1', service:'Combo(Y+M+D+Z)', planType:'Half Yearly', duration:6, price:8000, timing:'6:00 AM - 7:00 AM', maxBatch:30, enrolled:1, pastEnrolled:0, availability:'Available (29 left)', status:'Active' },
+    { planId:'C-Y1', service:'Combo(Y+M+D+Z)', planType:'Yearly', duration:12, price:12000, timing:'6:00 AM - 7:00 AM', maxBatch:30, enrolled:1, pastEnrolled:0, availability:'Available (29 left)', status:'Active' },
+    { planId:'Y-M1', service:'Yoga', planType:'Monthly', duration:1, price:1999, timing:'6:00 AM - 7:00 AM', maxBatch:20, enrolled:0, pastEnrolled:0, availability:'Available (20 left)', status:'Active' },
+    { planId:'Y-Q1', service:'Yoga', planType:'Quarterly', duration:3, price:4999, timing:'6:00 AM - 7:00 AM', maxBatch:20, enrolled:1, pastEnrolled:0, availability:'Available (19 left)', status:'Active' },
+    { planId:'Y-H1', service:'Yoga', planType:'Half Yearly', duration:6, price:8999, timing:'6:00 AM - 7:00 AM', maxBatch:20, enrolled:1, pastEnrolled:0, availability:'Available (19 left)', status:'Active' },
+    { planId:'D-M1', service:'Dance', planType:'Monthly', duration:1, price:2000, timing:'5:00 PM - 6:00 PM', maxBatch:25, enrolled:1, pastEnrolled:0, availability:'Available (24 left)', status:'Active' },
+    { planId:'U-M1', service:'UMS', planType:'Monthly', duration:1, price:2499, timing:'By Appointment', maxBatch:10, enrolled:0, pastEnrolled:0, availability:'Available (10 left)', status:'Active' },
+    { planId:'U-Q1', service:'UMS', planType:'Quarterly', duration:3, price:6999, timing:'By Appointment', maxBatch:10, enrolled:1, pastEnrolled:0, availability:'Available (9 left)', status:'Active' },
+  ],
+  leads: [
+    { leadId:'LEAD-001', name:'ANJALI MEHRA', mobile:'9876500001', email:'anjali@email.com', source:'Instagram', interestedService:'Yoga', stage:'Interested', notes:'Wants morning batch', createdDate:'2026-04-10', lastFollowUpDate:'2026-04-15', nextFollowUpDate:'2026-04-25', assignedTo:'', priority:'Hot' },
+    { leadId:'LEAD-002', name:'VIKRAM SINGH', mobile:'9876500002', email:'', source:'Walk-in', interestedService:'Combo(Y+M+D+Z)', stage:'Trial Booked', notes:'Trial on 28th April morning', createdDate:'2026-04-18', lastFollowUpDate:'2026-04-20', nextFollowUpDate:'2026-04-28', assignedTo:'', priority:'Hot' },
+    { leadId:'LEAD-003', name:'NEHA GUPTA', mobile:'9876500003', email:'neha.g@gmail.com', source:'Facebook', interestedService:'Zumba', stage:'New Lead', notes:'Enquired via FB message', createdDate:'2026-04-22', lastFollowUpDate:'', nextFollowUpDate:'2026-04-26', assignedTo:'', priority:'Warm' },
+    { leadId:'LEAD-004', name:'DEEPAK JOSHI', mobile:'9876500004', email:'', source:'Referral', interestedService:'UMS', stage:'Contacted', notes:'Referred by PANKAJ, called once', createdDate:'2026-04-20', lastFollowUpDate:'2026-04-21', nextFollowUpDate:'2026-04-27', assignedTo:'', priority:'Warm' },
+    { leadId:'LEAD-005', name:'MEERA PATEL', mobile:'9876500005', email:'meera@email.com', source:'Google', interestedService:'Dance', stage:'Lost', notes:'Joined another gym', createdDate:'2026-03-15', lastFollowUpDate:'2026-04-01', nextFollowUpDate:'', assignedTo:'', priority:'Cold' },
+  ],
+  settings: {
+    businessName: 'The Fit Katha Wellness',
+    businessAddress: 'Jaipur, Rajasthan',
+    businessPhone: '9876543210',
+    businessEmail: 'fitkatha@gmail.com',
+    sources: ['Walk-in','Instagram','Facebook','Google','Referral','YouTube','Banner','Other'],
+    purposes: ['Weight Loss','Weight Gain','Fitness','Dance','Zumba','Yoga','Meditation','General Health','Body Toning','Flexibility','Stress Relief','Nutrition'],
+    paymentModes: ['Cash','UPI','Card','Online','Cheque'],
+    customFields: [],
+    leadStages: ['New Lead','Contacted','Interested','Trial Booked','Trial Done','Enrolled','Lost'],
+    expenseCategories: ['Rent','Salary','Electricity','Water','Internet','Equipment','Repair/Maintenance','Marketing','Ads','Printing','Cleaning','Tea/Snacks','Transport','Miscellaneous']
+  },
+  expenses: [
+    { expId:'EXP-001', date:'2026-01-05', category:'Rent', amount:15000, paidTo:'Landlord', mode:'Online', note:'January rent', receiptUrl:'' },
+    { expId:'EXP-002', date:'2026-01-10', category:'Salary', amount:12000, paidTo:'Trainer Rahul', mode:'UPI', note:'Jan salary', receiptUrl:'' },
+    { expId:'EXP-003', date:'2026-01-15', category:'Electricity', amount:3500, paidTo:'JVVNL', mode:'Online', note:'Dec-Jan bill', receiptUrl:'' },
+    { expId:'EXP-004', date:'2026-02-05', category:'Rent', amount:15000, paidTo:'Landlord', mode:'Online', note:'February rent', receiptUrl:'' },
+    { expId:'EXP-005', date:'2026-02-12', category:'Salary', amount:12000, paidTo:'Trainer Rahul', mode:'UPI', note:'Feb salary', receiptUrl:'' },
+    { expId:'EXP-006', date:'2026-02-20', category:'Marketing', amount:5000, paidTo:'Facebook Ads', mode:'Card', note:'Feb campaign', receiptUrl:'' },
+    { expId:'EXP-007', date:'2026-03-05', category:'Rent', amount:15000, paidTo:'Landlord', mode:'Online', note:'March rent', receiptUrl:'' },
+    { expId:'EXP-008', date:'2026-03-10', category:'Equipment', amount:8500, paidTo:'FitGear Store', mode:'UPI', note:'New yoga mats + dumbbells', receiptUrl:'' },
+    { expId:'EXP-009', date:'2026-03-15', category:'Electricity', amount:4200, paidTo:'JVVNL', mode:'Online', note:'Feb-Mar bill', receiptUrl:'' },
+    { expId:'EXP-010', date:'2026-04-05', category:'Rent', amount:15000, paidTo:'Landlord', mode:'Online', note:'April rent', receiptUrl:'' },
+    { expId:'EXP-011', date:'2026-04-08', category:'Cleaning', amount:1500, paidTo:'CleanPro', mode:'Cash', note:'Deep cleaning', receiptUrl:'' },
+    { expId:'EXP-012', date:'2026-04-15', category:'Salary', amount:12000, paidTo:'Trainer Rahul', mode:'UPI', note:'Apr salary', receiptUrl:'' }
+  ]
+};
+
+// ═══════════════════════════════════════
+// INITIALIZATION
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const savedUrl = localStorage.getItem('fitkatha_api_url');
+  if (savedUrl) {
+    APP.apiUrl = savedUrl;
+    document.getElementById('apiUrlInput').value = savedUrl;
+    launchApp();
+  }
+});
+
+function connectAPI() {
+  const url = document.getElementById('apiUrlInput').value.trim();
+  if (!url) { showToast('Please enter the API URL', 'error'); return; }
+  APP.apiUrl = url;
+  APP.isDemo = false;
+  localStorage.setItem('fitkatha_api_url', url);
+  launchApp();
+}
+
+function launchDemo() {
+  APP.isDemo = true;
+  APP.data = JSON.parse(JSON.stringify(DEMO));
+  document.getElementById('setupScreen').style.display = 'none';
+  document.getElementById('appShell').style.display = 'block';
+  updateConnectionStatus(true);
+  renderAllPages();
+  showToast('Demo mode active \u2014 data is local only', 'warning');
+}
+
+async function launchApp() {
+  document.getElementById('setupScreen').style.display = 'none';
+  document.getElementById('appShell').style.display = 'block';
+  document.getElementById('setApiUrl').value = APP.apiUrl;
+  await refreshData();
+}
+
+// ═══════════════════════════════════════
+// API CALLS
+// ═══════════════════════════════════════
+async function apiGet(action, params = {}) {
+  if (APP.isDemo) return demoGet(action, params);
+  const url = new URL(APP.apiUrl);
+  url.searchParams.set('action', action);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  try {
+    const res = await fetch(url.toString());
+    return await res.json();
+  } catch (e) {
+    console.error('API GET error:', e);
+    updateConnectionStatus(false);
+    return { success: false, error: e.message };
+  }
+}
+
+async function apiPost(action, data = {}) {
+  if (APP.isDemo) return demoPost(action, data);
+  try {
+    const res = await fetch(APP.apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action, ...data })
+    });
+    return await res.json();
+  } catch (e) {
+    console.error('API POST error:', e);
+    return { success: false, error: e.message };
+  }
+}
+
+function demoGet(action, params) {
+  switch (action) {
+    case 'getCustomers': return { success: true, data: APP.data.customers };
+    case 'getPayments': return { success: true, data: APP.data.payments };
+    case 'getPlans': return { success: true, data: APP.data.plans };
+    case 'getLeads': return { success: true, data: APP.data.leads };
+    case 'getSettings': return { success: true, data: APP.data.settings };
+    case 'getExpenses': return { success: true, data: APP.data.expenses || [] };
+    case 'getDashboard': return buildDemoDashboard();
+    case 'getExpiringCustomers': return { success: true, data: APP.data.customers.filter(c => c.status !== 'Renewed').filter(c => { const d = daysDiff(c.planExpiry); return d <= 30; }) };
+    default: return { success: true, data: [] };
+  }
+}
+
+function nextDemoId(prefix, items, field) {
+  let max = 0;
+  items.forEach(item => {
+    const val = item[field] || '';
+    const num = parseInt(val.replace(prefix + '-', ''), 10);
+    if (!isNaN(num) && num > max) max = num;
+  });
+  return prefix + '-' + String(max + 1).padStart(3, '0');
+}
+
+function calcDemoStatus(joiningDate, planExpiry) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const join = new Date(joiningDate); join.setHours(0,0,0,0);
+  const exp = new Date(planExpiry); exp.setHours(0,0,0,0);
+  if (join > today) return 'Upcoming';
+  if (exp < today) return 'Expired';
+  return 'Active';
+}
+
+function demoPost(action, data) {
+  if (action === 'addCustomer') {
+    const id = nextDemoId('ENR', APP.data.customers, 'enrollmentId');
+    const plan = APP.data.plans.find(p => p.service === data.service && p.planType === data.planType);
+    const price = plan ? plan.price : 0;
+    const dur = plan ? plan.duration : 1;
+    const expiry = addMonths(data.joiningDate, dur);
+    const status = calcDemoStatus(data.joiningDate, expiry);
+    const netAmount = price - (Number(data.discount)||0);
+    const cust = { enrollmentId: id, name: data.name.toUpperCase(), mobile: data.mobile, gender: data.gender||'', source: data.source||'', purpose: data.purpose||'', address: data.address||'', service: data.service, planType: data.planType, planPrice: price, discount: Number(data.discount)||0, joiningDate: data.joiningDate, planExpiry: expiry, totalPaid: 0, dueAmount: netAmount < 0 ? 0 : netAmount, dueDate: data.dueDate||'', emiCount: Number(data.emiCount)||1, status: status, remarks: netAmount > 0 ? 'Due: \u20B9' + netAmount.toLocaleString('en-IN') : 'Fully Paid', batchWarning: '', customFields: data.customFields || {} };
+    APP.data.customers.push(cust);
+    // Update plan enrolled count and availability
+    if (plan) {
+      plan.enrolled = (plan.enrolled || 0) + 1;
+      const left = (plan.maxBatch || 20) - plan.enrolled;
+      plan.availability = left > 0 ? `Available (${left} left)` : 'Full';
+    }
+    return { success: true, enrollmentId: id, planPrice: price, expiry };
+  }
+  if (action === 'addPayment') {
+    const rid = nextDemoId('RCP', APP.data.payments, 'receipt');
+    const cust = APP.data.customers.find(c => c.enrollmentId === data.enrollmentId);
+    const amt = Number(data.amount);
+    let balance = 0;
+    if (cust) { cust.totalPaid += amt; cust.dueAmount = Math.max(0, (cust.planPrice - (cust.discount||0)) - cust.totalPaid); balance = cust.dueAmount; cust.remarks = cust.dueAmount > 0 ? 'Due: \u20B9' + cust.dueAmount.toLocaleString('en-IN') : 'Fully Paid'; }
+    const pay = { receipt: rid, date: data.paymentDate, name: data.customerName.toUpperCase(), enrollmentId: data.enrollmentId, mobile: cust?.mobile||'', service: cust?.service||'', planType: cust?.planType||'', planPrice: cust?.planPrice||0, emi: '', amount: amt, mode: data.paymentMode, balance: balance, remarks: balance > 0 ? 'Balance: \u20B9' + balance.toLocaleString('en-IN') : 'Paid in full' };
+    APP.data.payments.push(pay);
+    return { success: true, receipt: rid };
+  }
+  if (action === 'addLead') {
+    const lid = nextDemoId('LEAD', APP.data.leads, 'leadId');
+    APP.data.leads.push({ leadId: lid, name: data.name.toUpperCase(), mobile: data.mobile||'', email: data.email||'', source: data.source||'', interestedService: data.interestedService||'', stage: 'New Lead', notes: data.notes||'', createdDate: todayStr(), lastFollowUpDate: '', nextFollowUpDate: data.nextFollowUpDate||'', assignedTo: '', priority: data.priority||'Warm' });
+    return { success: true, leadId: lid };
+  }
+  if (action === 'updateLead') {
+    const lead = APP.data.leads.find(l => l.leadId === data.leadId);
+    if (lead) Object.assign(lead, data);
+    return { success: true };
+  }
+  if (action === 'addPlan') {
+    APP.data.plans.push(data);
+    return { success: true };
+  }
+  if (action === 'updatePlan') {
+    const plan = APP.data.plans.find(p => p.planId === data.planId);
+    if (plan) Object.assign(plan, data);
+    return { success: true };
+  }
+  if (action === 'deletePlan') {
+    const idx = APP.data.plans.findIndex(p => p.planId === data.planId);
+    if (idx !== -1) { APP.data.plans.splice(idx, 1); return { success: true }; }
+    return { success: false, error: 'Plan not found' };
+  }
+  if (action === 'addService') {
+    const planTypes = [
+      { type: 'Monthly', duration: 1 },
+      { type: 'Quarterly', duration: 3 },
+      { type: 'Half Yearly', duration: 6 },
+      { type: 'Yearly', duration: 12 }
+    ];
+    const prefix = data.serviceName.substring(0, 2).toUpperCase();
+    planTypes.forEach((pt, i) => {
+      const planId = prefix + '-' + pt.type[0] + (APP.data.plans.length + i + 1);
+      APP.data.plans.push({
+        planId, service: data.serviceName, planType: pt.type, duration: pt.duration,
+        price: 0, timing: '', maxBatch: 20, enrolled: 0, pastEnrolled: 0,
+        availability: 'Available (20 left)', status: 'Active'
+      });
+    });
+    return { success: true };
+  }
+  if (action === 'addExpense') {
+    const id = nextDemoId('EXP', APP.data.expenses || [], 'expId');
+    const exp = { expId: id, date: data.date, category: data.category, amount: Number(data.amount), paidTo: data.paidTo || '', mode: data.mode || '', note: data.note || '', receiptUrl: data.receiptUrl || '' };
+    if (!APP.data.expenses) APP.data.expenses = [];
+    APP.data.expenses.push(exp);
+    return { success: true, expId: id };
+  }
+  if (action === 'updateExpense') {
+    const exp = (APP.data.expenses || []).find(e => e.expId === data.expId);
+    if (exp) Object.assign(exp, { date: data.date, category: data.category, amount: Number(data.amount), paidTo: data.paidTo || '', mode: data.mode || '', note: data.note || '', receiptUrl: data.receiptUrl || '' });
+    return { success: true };
+  }
+  if (action === 'deleteExpense') {
+    const idx = (APP.data.expenses || []).findIndex(e => e.expId === data.expId);
+    if (idx !== -1) { APP.data.expenses.splice(idx, 1); return { success: true }; }
+    return { success: false, error: 'Expense not found' };
+  }
+  if (action === 'saveSettings') {
+    Object.assign(APP.data.settings, data);
+    return { success: true };
+  }
+  if (action === 'updateCustomer') {
+    const cust = APP.data.customers.find(c => c.enrollmentId === data.enrollmentId);
+    if (cust) {
+      if (data.name) cust.name = data.name.toUpperCase();
+      if (data.mobile !== undefined) cust.mobile = data.mobile;
+      if (data.gender !== undefined) cust.gender = data.gender;
+      if (data.address !== undefined) cust.address = data.address;
+      if (data.source !== undefined) cust.source = data.source;
+      if (data.purpose !== undefined) cust.purpose = data.purpose;
+      if (data.customFields) cust.customFields = data.customFields;
+    }
+    return { success: true };
+  }
+  if (action === 'convertLead') {
+    const lead = APP.data.leads.find(l => l.leadId === data.leadId);
+    if (lead) { lead.stage = 'Enrolled'; lead.lastFollowUpDate = todayStr(); }
+    return { success: true };
+  }
+  return { success: true };
+}
+
+// ═══════════════════════════════════════
+// DATA LOADING
+// ═══════════════════════════════════════
+async function refreshData() {
+  try {
+    const [cust, pay, plans, leads, settings, expenses] = await Promise.all([
+      apiGet('getCustomers'), apiGet('getPayments'), apiGet('getPlans'),
+      apiGet('getLeads'), apiGet('getSettings'), apiGet('getExpenses')
+    ]);
+    if (cust.success) APP.data.customers = cust.data || [];
+    if (pay.success) APP.data.payments = pay.data || [];
+    if (plans.success) APP.data.plans = plans.data || [];
+    if (leads.success) APP.data.leads = leads.data || [];
+    if (settings.success && settings.data) APP.data.settings = settings.data;
+    if (expenses && expenses.success) APP.data.expenses = expenses.data || [];
+    updateConnectionStatus(true);
+    renderAllPages();
+    showToast('Data synced successfully', 'success');
+  } catch (e) {
+    updateConnectionStatus(false);
+    showToast('Failed to sync: ' + e.message, 'error');
+  }
+}
+
+function recalcCustomerStatuses() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  APP.data.customers.forEach(c => {
+    if (!c.joiningDate || !c.planExpiry) return;
+    if (c.status === 'Renewed') return;
+    const join = new Date(c.joiningDate); join.setHours(0,0,0,0);
+    const exp = new Date(c.planExpiry); exp.setHours(0,0,0,0);
+    if (join > today) c.status = 'Upcoming';
+    else if (exp < today) c.status = 'Expired';
+    else c.status = 'Active';
+  });
+}
+
+function updateBranding() {
+  const s = APP.data.settings;
+  const icon = document.getElementById('sidebarBrandIcon');
+  const name = document.getElementById('sidebarBrandName');
+  if (icon) {
+    if (s.businessLogo) {
+      icon.innerHTML = '<img src="' + s.businessLogo + '" alt="Logo" onerror="this.parentElement.innerHTML=\'FK\'">';
+    } else {
+      icon.textContent = (s.businessName || 'FitKatha').substring(0, 2).toUpperCase();
+    }
+  }
+  if (name && s.businessName) name.textContent = s.businessName;
+}
+
+function renderAllPages() {
+  recalcCustomerStatuses();
+  updateBranding();
+  renderDashboard();
+  renderCustomers();
+  renderPayments();
+  renderLeads();
+  renderExpiry();
+  renderPlans();
+  renderRevenue();
+  renderExpenses();
+  renderSettings();
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+const PAGE_META = {
+  dashboard: { title: 'Dashboard', subtitle: 'Overview of your business' },
+  customers: { title: 'Customers', subtitle: 'Manage customer enrollments' },
+  payments: { title: 'Payments', subtitle: 'Track all payment records' },
+  leads: { title: 'Lead Pipeline', subtitle: 'Manage leads & follow-ups' },
+  expiry: { title: 'Expiry Tracker', subtitle: 'Renewal management' },
+  plans: { title: 'Plans & Pricing', subtitle: 'Manage services and pricing' },
+  revenue: { title: 'Revenue Analytics', subtitle: 'Business performance insights' },
+  expenses: { title: 'Expenses', subtitle: 'Track business expenditure' },
+  settings: { title: 'Settings', subtitle: 'Configure your application' }
+};
+
+function navigate(page) {
+  APP.currentPage = page;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
+  document.querySelectorAll('.bnav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
+  const meta = PAGE_META[page] || { title: page, subtitle: '' };
+  document.getElementById('pageTitle').textContent = meta.title;
+  document.getElementById('pageSubtitle').textContent = meta.subtitle;
+  if (window.innerWidth <= 768) closeSidebar();
+}
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('mobileOverlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════
+function buildDemoDashboard() {
+  const c = APP.data.customers;
+  const p = APP.data.payments;
+  return { success: true, data: {
+    totalCustomers: c.length,
+    activeCustomers: c.filter(x => x.status === 'Active').length,
+    expiredCustomers: c.filter(x => x.status === 'Expired').length,
+    totalRevenue: p.reduce((s, x) => s + x.amount, 0),
+    totalDue: c.reduce((s, x) => s + (x.dueAmount||0), 0),
+    expiringSoon: c.filter(x => x.status !== 'Renewed').filter(x => { const d = daysDiff(x.planExpiry); return d >= 0 && d <= 7; }).length,
+    todayFollowups: APP.data.leads.filter(l => l.nextFollowUpDate === todayStr()).length
+  }};
+}
+
+function renderDashboard() {
+  const c = APP.data.customers, p = APP.data.payments, l = APP.data.leads;
+  const active = c.filter(x => x.status === 'Active').length;
+  const expired = c.filter(x => x.status === 'Expired').length;
+  const totalRev = p.reduce((s, x) => s + (x.amount||0), 0);
+  const totalDue = c.reduce((s, x) => s + (x.dueAmount||0), 0);
+  const expSoon = c.filter(x => x.status !== 'Renewed').filter(x => { const d = daysDiff(x.planExpiry); return d >= 0 && d <= 7; }).length;
+  const todayFU = l.filter(x => x.nextFollowUpDate === todayStr() && x.stage !== 'Enrolled' && x.stage !== 'Lost').length;
+
+  document.getElementById('dashStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--primary-50);color:var(--primary)"><i class="fas fa-users"></i></div><div class="stat-value">${c.length}</div><div class="stat-label">Total Customers</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--success-bg);color:var(--success)"><i class="fas fa-user-check"></i></div><div class="stat-value">${active}</div><div class="stat-label">Active</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:#FFF3E0;color:var(--accent)"><i class="fas fa-rupee-sign"></i></div><div class="stat-value">\u20B9${formatNum(totalRev)}</div><div class="stat-label">Total Revenue</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-exclamation-circle"></i></div><div class="stat-value">\u20B9${formatNum(totalDue)}</div><div class="stat-label">Outstanding Due</div></div>
+  `;
+
+  // Expiring soon
+  const expiring = c.filter(x => x.status !== 'Renewed').filter(x => { const d = daysDiff(x.planExpiry); return d >= -7 && d <= 14; }).sort((a,b) => daysDiff(a.planExpiry) - daysDiff(b.planExpiry)).slice(0, 5);
+  document.getElementById('dashExpiring').innerHTML = expiring.length ? expiring.map(x => {
+    const d = daysDiff(x.planExpiry);
+    const cls = d < 0 ? 'badge-expired' : d <= 7 ? 'badge-hot' : 'badge-upcoming';
+    const txt = d < 0 ? `${Math.abs(d)}d ago` : d === 0 ? 'Today' : `${d}d left`;
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)"><div><span class="fw-600">${x.name}</span><br><span class="text-muted fs-12">${x.service} \u2022 ${x.planType}</span></div><span class="badge-status ${cls}">${txt}</span></div>`;
+  }).join('') : '<div class="text-center text-muted" style="padding:20px"><i class="fas fa-check-circle text-success" style="font-size:24px;display:block;margin-bottom:8px"></i>No upcoming expirations</div>';
+
+  // Today follow-ups
+  const followups = l.filter(x => x.nextFollowUpDate === todayStr() && x.stage !== 'Enrolled' && x.stage !== 'Lost');
+  document.getElementById('dashFollowups').innerHTML = followups.length ? followups.map(x => `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)"><div><span class="fw-600">${x.name}</span><br><span class="text-muted fs-12">${x.interestedService} \u2022 ${x.stage}</span></div><button class="btn btn-sm btn-outline" onclick="showLeadDetail('${x.leadId}')">View</button></div>`).join('') : '<div class="text-center text-muted" style="padding:20px"><i class="fas fa-coffee" style="font-size:24px;display:block;margin-bottom:8px"></i>No follow-ups today</div>';
+
+  // Recent activity
+  const recent = p.slice().sort((a,b) => b.date.localeCompare(a.date)).slice(0, 8);
+  document.getElementById('activityTimeline').innerHTML = recent.map(x => `<div class="timeline-item"><div class="tl-dot"></div><div class="tl-date">${formatDate(x.date)}</div><div class="tl-content">Payment from <strong>${x.name}</strong> \u2014 <span class="tl-amount">\u20B9${formatNum(x.amount)}</span> via ${x.mode} (${x.receipt})</div></div>`).join('');
+
+  // Update badges
+  document.getElementById('expiryBadge').style.display = expSoon > 0 ? '' : 'none';
+  document.getElementById('expiryBadge').textContent = expSoon;
+  document.getElementById('leadsBadge').style.display = todayFU > 0 ? '' : 'none';
+  document.getElementById('leadsBadge').textContent = todayFU;
+  document.getElementById('notifDot').style.display = todayFU > 0 ? '' : 'none';
+}
+
+// ═══════════════════════════════════════
+// CUSTOMERS
+// ═══════════════════════════════════════
+function renderCustomers() {
+  const services = [...new Set(APP.data.customers.map(c => c.service).filter(Boolean))];
+  const sel = document.getElementById('custFilterService');
+  const curVal = sel.value;
+  sel.innerHTML = '<option value="all">All Services</option>' + services.map(s => `<option value="${s}">${s}</option>`).join('');
+  sel.value = curVal || 'all';
+  filterCustomers();
+}
+
+function filterCustomers() {
+  const status = document.getElementById('custFilterStatus').value;
+  const service = document.getElementById('custFilterService').value;
+  let list = APP.data.customers.slice();
+  if (status !== 'all') list = list.filter(c => c.status === status);
+  if (service !== 'all') list = list.filter(c => c.service === service);
+  // Apply sort: user's active sort or default (latest joining date first)
+  const activeCustSort = Object.keys(APP.sortState).find(k => k.startsWith('customers_'));
+  if (activeCustSort) {
+    const field = activeCustSort.replace('customers_', '');
+    const dir = APP.sortState[activeCustSort];
+    list.sort((a, b) => {
+      let va = a[field] || '', vb = b[field] || '';
+      if (field === 'dueAmount' || field === 'planPrice' || field === 'discount') { va = Number(va); vb = Number(vb); return dir === 'asc' ? va - vb : vb - va; }
+      if (typeof va === 'string') va = va.toLowerCase();
+      if (typeof vb === 'string') vb = vb.toLowerCase();
+      if (va < vb) return dir === 'asc' ? -1 : 1;
+      if (va > vb) return dir === 'asc' ? 1 : -1;
+      return 0;
+    });
+  } else {
+    list.sort((a,b) => (b.joiningDate||'').localeCompare(a.joiningDate||''));
+  }
+  // Pagination
+  const total = list.length;
+  const totalPages = Math.max(1, Math.ceil(total / APP.pageSize));
+  if (APP.page.customers > totalPages) APP.page.customers = totalPages;
+  const startIdx = (APP.page.customers - 1) * APP.pageSize;
+  const paged = list.slice(startIdx, startIdx + APP.pageSize);
+  const tbody = document.getElementById('customersTableBody');
+  tbody.innerHTML = paged.map(c => `<tr>
+    <td><span class="fw-600 text-primary">${c.enrollmentId}</span></td>
+    <td><span class="fw-600">${c.name}</span></td>
+    <td>${c.mobile||''}</td>
+    <td><span class="tag" style="background:var(--primary-50);color:var(--primary)">${c.service||''}</span></td>
+    <td>${c.planType||''}</td>
+    <td>${formatDate(c.joiningDate)}</td>
+    <td>${formatDate(c.planExpiry)}</td>
+    <td><span class="badge-status badge-${c.status?.toLowerCase()}">${c.status}</span></td>
+    <td class="${c.dueAmount > 0 ? 'text-danger fw-600' : 'text-success'}">\u20B9${formatNum(c.dueAmount||0)}</td>
+    <td><button class="btn btn-sm btn-ghost" onclick="showCustomerProfile('${c.enrollmentId}')" title="View"><i class="fas fa-eye"></i></button><button class="btn btn-sm btn-ghost" onclick="showEditCustomerModal('${c.enrollmentId}')" title="Edit"><i class="fas fa-edit"></i></button><button class="btn btn-sm btn-ghost" onclick="showAddPaymentModal('${c.enrollmentId}')" title="Pay"><i class="fas fa-rupee-sign"></i></button></td>
+  </tr>`).join('');
+  document.getElementById('custCount').textContent = `${total} customer${total !== 1 ? 's' : ''}` + (totalPages > 1 ? ` • Page ${APP.page.customers} of ${totalPages}` : '');
+  // Render pagination controls
+  let pagEl = document.getElementById('custPagination');
+  if (!pagEl) { pagEl = document.createElement('div'); pagEl.id = 'custPagination'; document.getElementById('custCount').parentElement.insertBefore(pagEl, document.getElementById('custCount').nextSibling); }
+  if (totalPages > 1) {
+    pagEl.innerHTML = `<div class="d-flex align-center gap-12"><button class="btn btn-sm btn-outline" ${APP.page.customers <= 1 ? 'disabled' : ''} onclick="APP.page.customers=1;filterCustomers()"><i class="fas fa-angle-double-left"></i></button><button class="btn btn-sm btn-outline" ${APP.page.customers <= 1 ? 'disabled' : ''} onclick="APP.page.customers--;filterCustomers()"><i class="fas fa-angle-left"></i></button><span class="fw-600 fs-12">${APP.page.customers} / ${totalPages}</span><button class="btn btn-sm btn-outline" ${APP.page.customers >= totalPages ? 'disabled' : ''} onclick="APP.page.customers++;filterCustomers()"><i class="fas fa-angle-right"></i></button><button class="btn btn-sm btn-outline" ${APP.page.customers >= totalPages ? 'disabled' : ''} onclick="APP.page.customers=${totalPages};filterCustomers()"><i class="fas fa-angle-double-right"></i></button></div>`;
+  } else { pagEl.innerHTML = ''; }
+  updateSortIcons('customers');
+}
+
+// ═══════════════════════════════════════
+// PAYMENTS
+// ═══════════════════════════════════════
+function renderPayments() {
+  const modes = [...new Set(APP.data.payments.map(p => p.mode).filter(Boolean))];
+  const sel = document.getElementById('payFilterMode');
+  const curVal = sel.value;
+  sel.innerHTML = '<option value="all">All Modes</option>' + modes.map(m => `<option value="${m}">${m}</option>`).join('');
+  sel.value = curVal || 'all';
+  filterPayments();
+}
+
+function filterPayments() {
+  const month = document.getElementById('payFilterMonth').value;
+  const mode = document.getElementById('payFilterMode').value;
+  let list = APP.data.payments.slice();
+  if (month) list = list.filter(p => p.date && p.date.startsWith(month));
+  if (mode !== 'all') list = list.filter(p => p.mode === mode);
+  // Respect user sort; default to latest date first
+  const activePaySort = Object.keys(APP.sortState).find(k => k.startsWith('payments_'));
+  if (activePaySort) {
+    const field = activePaySort.replace('payments_', '');
+    const dir = APP.sortState[activePaySort];
+    list.sort((a,b) => {
+      let va = a[field] || '', vb = b[field] || '';
+      if (field === 'amount') { va = Number(va); vb = Number(vb); return dir === 'asc' ? va - vb : vb - va; }
+      if (typeof va === 'string') va = va.toLowerCase();
+      if (typeof vb === 'string') vb = vb.toLowerCase();
+      return dir === 'asc' ? (va < vb ? -1 : va > vb ? 1 : 0) : (va > vb ? -1 : va < vb ? 1 : 0);
+    });
+  } else {
+    list.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  }
+  // Pagination
+  const payTotal = list.length;
+  const payTotalPages = Math.max(1, Math.ceil(payTotal / APP.pageSize));
+  if (APP.page.payments > payTotalPages) APP.page.payments = payTotalPages;
+  const payStart = (APP.page.payments - 1) * APP.pageSize;
+  const payPaged = list.slice(payStart, payStart + APP.pageSize);
+  document.getElementById('paymentsTableBody').innerHTML = payPaged.map(p => `<tr>
+    <td><span class="fw-600 text-primary">${p.receipt}</span></td>
+    <td>${formatDate(p.date)}</td>
+    <td class="fw-600">${p.name}</td>
+    <td>${p.enrollmentId}</td>
+    <td><span class="tag" style="background:var(--primary-50);color:var(--primary)">${p.service||''}</span></td>
+    <td class="fw-700">\u20B9${formatNum(p.amount)}</td>
+    <td>${p.mode}</td>
+    <td class="${p.balance > 0 ? 'text-danger' : 'text-success'}">\u20B9${formatNum(p.balance||0)}</td>
+    <td><button class="btn btn-sm btn-ghost" onclick="showReceipt('${p.receipt}')" title="Receipt"><i class="fas fa-receipt"></i></button></td>
+  </tr>`).join('');
+  const totalAmt = list.reduce((s, p) => s + (p.amount||0), 0);
+  document.getElementById('payCount').textContent = `${payTotal} payments` + (payTotalPages > 1 ? ` • Page ${APP.page.payments} of ${payTotalPages}` : '');
+  document.getElementById('payTotal').innerHTML = `Total: \u20B9${formatNum(totalAmt)}`;
+  // Render pagination controls
+  let payPagEl = document.getElementById('payPagination');
+  if (!payPagEl) { payPagEl = document.createElement('div'); payPagEl.id = 'payPagination'; payPagEl.style.cssText = 'margin-left:12px'; document.getElementById('payCount').parentElement.insertBefore(payPagEl, document.getElementById('payTotal')); }
+  if (payTotalPages > 1) {
+    payPagEl.innerHTML = `<div class="d-flex align-center gap-12"><button class="btn btn-sm btn-outline" ${APP.page.payments <= 1 ? 'disabled' : ''} onclick="APP.page.payments=1;filterPayments()"><i class="fas fa-angle-double-left"></i></button><button class="btn btn-sm btn-outline" ${APP.page.payments <= 1 ? 'disabled' : ''} onclick="APP.page.payments--;filterPayments()"><i class="fas fa-angle-left"></i></button><span class="fw-600 fs-12">${APP.page.payments} / ${payTotalPages}</span><button class="btn btn-sm btn-outline" ${APP.page.payments >= payTotalPages ? 'disabled' : ''} onclick="APP.page.payments++;filterPayments()"><i class="fas fa-angle-right"></i></button><button class="btn btn-sm btn-outline" ${APP.page.payments >= payTotalPages ? 'disabled' : ''} onclick="APP.page.payments=${payTotalPages};filterPayments()"><i class="fas fa-angle-double-right"></i></button></div>`;
+  } else { payPagEl.innerHTML = ''; }
+}
+
+// ═══════════════════════════════════════
+// LEADS
+// ═══════════════════════════════════════
+function getFilteredLeads() {
+  const stageFilter = document.getElementById('leadFilterStage')?.value || 'all';
+  const prioFilter = document.getElementById('leadFilterPriority')?.value || 'all';
+  let leads = APP.data.leads.slice();
+  if (stageFilter !== 'all') leads = leads.filter(l => l.stage === stageFilter);
+  if (prioFilter !== 'all') leads = leads.filter(l => l.priority === prioFilter);
+  return leads;
+}
+
+function renderLeads() {
+  const stages = APP.data.settings.leadStages || ['New Lead','Contacted','Interested','Trial Booked','Trial Done','Enrolled','Lost'];
+  const allLeads = APP.data.leads;
+  const pipeline = allLeads.filter(l => l.stage !== 'Enrolled' && l.stage !== 'Lost').length;
+  const enrolled = allLeads.filter(l => l.stage === 'Enrolled').length;
+  const lost = allLeads.filter(l => l.stage === 'Lost').length;
+  const hot = allLeads.filter(l => l.priority === 'Hot' && l.stage !== 'Enrolled' && l.stage !== 'Lost').length;
+  const convRate = (enrolled + lost) > 0 ? Math.round(enrolled / (enrolled + lost) * 100) : 0;
+  document.getElementById('leadStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--primary-50);color:var(--primary)"><i class="fas fa-user-tag"></i></div><div class="stat-value">${allLeads.length}</div><div class="stat-label">Total Leads</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--info-bg);color:var(--info)"><i class="fas fa-filter"></i></div><div class="stat-value">${pipeline}</div><div class="stat-label">In Pipeline</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--success-bg);color:var(--success)"><i class="fas fa-user-check"></i></div><div class="stat-value">${enrolled} <span style="font-size:12px;font-weight:400;color:var(--text-tertiary)">(${convRate}%)</span></div><div class="stat-label">Converted</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-fire"></i></div><div class="stat-value">${hot}</div><div class="stat-label">Hot Leads</div></div>
+  `;
+
+  // Populate stage filter dropdown (preserve selection)
+  const stageSelect = document.getElementById('leadFilterStage');
+  const curStage = stageSelect?.value || 'all';
+  stageSelect.innerHTML = '<option value="all">All Stages</option>' + stages.map(s => '<option' + (s === curStage ? ' selected' : '') + '>' + s + '</option>').join('');
+
+  filterLeads();
+}
+
+function filterLeads() {
+  const stages = APP.data.settings.leadStages || ['New Lead','Contacted','Interested','Trial Booked','Trial Done','Enrolled','Lost'];
+  const filteredLeads = getFilteredLeads();
+  const stageFilter = document.getElementById('leadFilterStage')?.value || 'all';
+  const prioFilter = document.getElementById('leadFilterPriority')?.value || 'all';
+
+  // Board view: show all stage columns but only matching leads in each
+  const board = document.getElementById('leadsBoard');
+  board.innerHTML = stages.map(stage => {
+    // If stage filter active, only show that column
+    if (stageFilter !== 'all' && stage !== stageFilter) return '';
+    let stageLeads = APP.data.leads.filter(l => l.stage === stage);
+    if (prioFilter !== 'all') stageLeads = stageLeads.filter(l => l.priority === prioFilter);
+    const stageColors = { 'New Lead': 'var(--info)', 'Contacted': '#7C4DFF', 'Interested': 'var(--warning)', 'Trial Booked': '#FF6B35', 'Trial Done': '#E91E63', 'Enrolled': 'var(--success)', 'Lost': 'var(--danger)' };
+    const borderColor = stageColors[stage] || 'var(--border)';
+    return `<div class="kanban-column"><div class="kanban-column-header" style="border-bottom-color:${borderColor}"><h4>${stage}</h4><span class="count">${stageLeads.length}</span></div>${stageLeads.map(l => {
+      const prCls = l.priority === 'Hot' ? 'badge-hot' : l.priority === 'Cold' ? 'badge-cold' : 'badge-warm';
+      const enrolledBadge = l.stage === 'Enrolled' ? '<span class="badge-status badge-active" style="font-size:10px;margin-left:6px"><i class="fas fa-check"></i> Converted</span>' : '';
+      return `<div class="kanban-card" onclick="showLeadDetail('${l.leadId}')"><div class="lead-name">${l.name}${enrolledBadge}</div><div class="lead-info">${l.interestedService||'No service'} \u2022 ${l.mobile||''}</div><div class="lead-meta"><span class="priority ${prCls}">${l.priority||'Warm'}</span>${l.nextFollowUpDate ? '<span><i class="fas fa-calendar-alt"></i> ' + formatDate(l.nextFollowUpDate) + '</span>' : ''}</div></div>`;
+    }).join('')}</div>`;
+  }).join('');
+
+  // List view: same filtered leads, with sorting
+  renderLeadsList();
+}
+
+function setLeadsView(view) {
+  document.getElementById('leadsBoard').style.display = view === 'board' ? 'flex' : 'none';
+  document.getElementById('leadsList').style.display = view === 'list' ? 'block' : 'none';
+  document.getElementById('leadsViewBoard').classList.toggle('active', view === 'board');
+  document.getElementById('leadsViewList').classList.toggle('active', view === 'list');
+  filterLeads();
+}
+
+function renderLeadsList() {
+  let leads = getFilteredLeads();
+  // Respect user sort; default to latest created first
+  const activeLeadSort = Object.keys(APP.sortState).find(k => k.startsWith('leads_'));
+  if (activeLeadSort) {
+    const field = activeLeadSort.replace('leads_', '');
+    const dir = APP.sortState[activeLeadSort];
+    leads.sort((a,b) => {
+      let va = (a[field]||'').toLowerCase(), vb = (b[field]||'').toLowerCase();
+      return dir === 'asc' ? (va < vb ? -1 : va > vb ? 1 : 0) : (va > vb ? -1 : va < vb ? 1 : 0);
+    });
+  } else {
+    leads.sort((a,b) => (b.createdDate||'').localeCompare(a.createdDate||''));
+  }
+  document.getElementById('leadsTableBody').innerHTML = leads.map(l => {
+    const prCls = l.priority === 'Hot' ? 'badge-hot' : l.priority === 'Cold' ? 'badge-cold' : 'badge-warm';
+    const stageCls = l.stage === 'Enrolled' ? 'badge-active' : l.stage === 'Lost' ? 'badge-expired' : l.stage === 'Trial Done' || l.stage === 'Interested' ? 'badge-hot' : 'badge-upcoming';
+    return `<tr><td class="fw-600">${l.leadId}</td><td class="fw-600">${l.name}</td><td>${l.mobile||''}</td><td>${l.source||''}</td><td>${l.interestedService||''}</td><td><span class="badge-status ${stageCls}">${l.stage}</span></td><td><span class="badge-status ${prCls}">${l.priority||'Warm'}</span></td><td>${formatDate(l.createdDate)}</td><td>${formatDate(l.nextFollowUpDate)}</td><td><button class="btn btn-sm btn-ghost" onclick="showLeadDetail('${l.leadId}')"><i class="fas fa-eye"></i></button></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// EXPIRY TRACKER
+// ═══════════════════════════════════════
+function renderExpiry() {
+  const c = APP.data.customers.filter(x => x.status !== 'Renewed');
+  const expired = c.filter(x => x.status === 'Expired').length;
+  const soon = c.filter(x => { const d = daysDiff(x.planExpiry); return d >= 0 && d <= 7; }).length;
+  const month = c.filter(x => { const d = daysDiff(x.planExpiry); return d > 7 && d <= 30; }).length;
+
+  document.getElementById('expiryStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-times-circle"></i></div><div class="stat-value">${expired}</div><div class="stat-label">Expired</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--warning-bg);color:var(--warning)"><i class="fas fa-exclamation-triangle"></i></div><div class="stat-value">${soon}</div><div class="stat-label">Expiring in 7 days</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--info-bg);color:var(--info)"><i class="fas fa-calendar-alt"></i></div><div class="stat-value">${month}</div><div class="stat-label">Expiring this month</div></div>
+  `;
+  filterExpiry();
+}
+
+function filterExpiry() {
+  const filter = document.getElementById('expiryFilter').value;
+  let list = APP.data.customers.filter(c => c.status !== 'Renewed').map(c => ({ ...c, daysLeft: daysDiff(c.planExpiry) }));
+  if (filter === 'expired') list = list.filter(c => c.daysLeft < 0);
+  else if (filter === 'soon') list = list.filter(c => c.daysLeft >= 0 && c.daysLeft <= 7);
+  else if (filter === 'month') list = list.filter(c => c.daysLeft >= 0 && c.daysLeft <= 30);
+  else list = list.filter(c => c.daysLeft <= 30);
+  list.sort((a,b) => a.daysLeft - b.daysLeft);
+
+  document.getElementById('expiryTableBody').innerHTML = list.map(c => {
+    const cls = c.daysLeft < 0 ? 'badge-expired' : c.daysLeft <= 7 ? 'badge-hot' : 'badge-upcoming';
+    const txt = c.daysLeft < 0 ? 'Expired' : c.daysLeft === 0 ? 'Today' : c.daysLeft <= 7 ? 'Expiring soon' : 'This month';
+    return `<tr><td class="fw-600">${c.name}</td><td>${c.enrollmentId}</td><td>${c.service}</td><td>${formatDate(c.planExpiry)}</td><td class="${c.daysLeft < 0 ? 'text-danger fw-600' : c.daysLeft <= 7 ? 'text-warning fw-600' : ''}">${c.daysLeft}d</td><td><span class="badge-status ${cls}">${txt}</span></td><td><button class="btn btn-sm btn-primary" onclick="renewCustomer('${c.enrollmentId}')"><i class="fas fa-redo"></i> Renew</button></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// PLANS & PRICING
+// ═══════════════════════════════════════
+function renderPlans() {
+  document.getElementById('plansTableBody').innerHTML = APP.data.plans.map(p => {
+    const avail = p.availability || '';
+    const cls = avail.includes('FULL') ? 'text-danger fw-600' : avail.includes('NEAR') ? 'text-warning fw-600' : 'text-success';
+    const enrolled = p.enrolled || 0;
+    const removeBtnCls = enrolled === 0 ? 'btn btn-sm btn-ghost text-danger' : 'btn btn-sm btn-ghost text-muted';
+    const removeDisabled = enrolled > 0 ? 'disabled title="Cannot remove — ' + enrolled + ' customer(s) enrolled"' : 'title="Remove plan"';
+    return `<tr><td class="fw-600">${p.planId}</td><td>${p.service}</td><td>${p.planType}</td><td>${p.duration} mo</td><td class="fw-600">\u20B9${formatNum(p.price)}</td><td>${p.timing||''}</td><td>${p.maxBatch}</td><td>${enrolled}</td><td class="${cls}">${avail}</td><td><button class="btn btn-sm btn-ghost" onclick="editPlan('${p.planId}')"><i class="fas fa-edit"></i></button> <button class="${removeBtnCls}" ${removeDisabled} onclick="removePlan('${p.planId}')"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+  }).join('');
+}
+
+async function removePlan(planId) {
+  const plan = APP.data.plans.find(p => p.planId === planId);
+  if (!plan) return;
+  if ((plan.enrolled || 0) > 0) { showToast('Cannot remove plan with enrolled customers', 'error'); return; }
+  if (!confirm('Remove plan "' + plan.service + ' - ' + plan.planType + '"? This action cannot be undone.')) return;
+  const res = await apiPost('deletePlan', { planId });
+  if (res.success) { showToast('Plan removed successfully', 'success'); await refreshData(); }
+  else { showToast('Error: ' + (res.error || 'Unknown'), 'error'); }
+}
+
+// ═══════════════════════════════════════
+// REVENUE
+// ═══════════════════════════════════════
+function renderRevenue() {
+  const p = APP.data.payments, c = APP.data.customers;
+  const totalRev = p.reduce((s,x) => s + (x.amount||0), 0);
+  const totalDue = c.reduce((s,x) => s + (x.dueAmount||0), 0);
+  const collRate = totalRev > 0 ? Math.round(totalRev / (totalRev + totalDue) * 100) : 0;
+
+  document.getElementById('revenueStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--success-bg);color:var(--success)"><i class="fas fa-rupee-sign"></i></div><div class="stat-value">\u20B9${formatNum(totalRev)}</div><div class="stat-label">Total Revenue</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-clock"></i></div><div class="stat-value">\u20B9${formatNum(totalDue)}</div><div class="stat-label">Outstanding</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--info-bg);color:var(--info)"><i class="fas fa-percentage"></i></div><div class="stat-value">${collRate}%</div><div class="stat-label">Collection Rate</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--warning-bg);color:var(--warning)"><i class="fas fa-receipt"></i></div><div class="stat-value">${p.length}</div><div class="stat-label">Total Payments</div></div>
+  `;
+
+  // Expense data for P&L
+  const expenses = APP.data.expenses || [];
+  const totalExpenses = expenses.reduce((s, e) => s + (e.amount || 0), 0);
+  const netProfit = totalRev - totalExpenses;
+  const profitMargin = totalRev > 0 ? Math.round(netProfit / totalRev * 100) : 0;
+
+  // Add P&L stat cards
+  document.getElementById('revenueStats').innerHTML += `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-wallet"></i></div><div class="stat-value">\u20B9${formatNum(totalExpenses)}</div><div class="stat-label">Total Expenses</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:${netProfit >= 0 ? 'var(--success-bg)' : 'var(--danger-bg)'};color:${netProfit >= 0 ? 'var(--success)' : 'var(--danger)'}"><i class="fas fa-${netProfit >= 0 ? 'arrow-up' : 'arrow-down'}"></i></div><div class="stat-value">\u20B9${formatNum(Math.abs(netProfit))}</div><div class="stat-label">Net ${netProfit >= 0 ? 'Profit' : 'Loss'} (${profitMargin}%)</div></div>
+  `;
+
+  // Monthly chart
+  const monthly = {};
+  p.forEach(pay => { const m = pay.date ? pay.date.substring(0, 7) : ''; if (m) monthly[m] = (monthly[m]||0) + pay.amount; });
+  const months = Object.keys(monthly).sort();
+  const vals = months.map(m => monthly[m]);
+
+  if (APP.charts.revenue) APP.charts.revenue.destroy();
+  const ctx1 = document.getElementById('revenueChart');
+  if (ctx1) {
+    APP.charts.revenue = new Chart(ctx1, {
+      type: 'bar', data: {
+        labels: months.map(m => { const [y,mo] = m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1] + ' ' + y.slice(2); }),
+        datasets: [{ label: 'Revenue', data: vals, backgroundColor: '#4CAF50', borderRadius: 6, barPercentage: 0.6 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: v => '\u20B9' + formatNum(v) } }, x: { grid: { display: false } } } }
+    });
+  }
+
+  // Service chart
+  const byService = {};
+  p.forEach(pay => { if (pay.service) byService[pay.service] = (byService[pay.service]||0) + pay.amount; });
+  const svcLabels = Object.keys(byService);
+  const svcVals = Object.values(byService);
+  const svcColors = ['#4CAF50','#FF6B35','#1A73E8','#F29900','#D93025','#9C27B0'];
+
+  if (APP.charts.service) APP.charts.service.destroy();
+  const ctx2 = document.getElementById('serviceChart');
+  if (ctx2) {
+    APP.charts.service = new Chart(ctx2, {
+      type: 'doughnut', data: {
+        labels: svcLabels, datasets: [{ data: svcVals, backgroundColor: svcColors.slice(0, svcLabels.length), borderWidth: 0 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'rectRounded' } } }, cutout: '65%' }
+    });
+  }
+
+  // Table (latest month first)
+  const currentMonth = todayStr().substring(0, 7);
+  const monthsDesc = months.slice().reverse();
+  document.getElementById('revenueTableBody').innerHTML = monthsDesc.map(m => {
+    const mPayments = p.filter(x => x.date && x.date.startsWith(m));
+    const mCustomers = c.filter(x => x.joiningDate && x.joiningDate.startsWith(m));
+    // Calculate active count AS OF that month (not current status)
+    const monthEnd = m + '-28'; // approximate month end
+    const activeInMonth = c.filter(x => x.joiningDate <= monthEnd && x.planExpiry >= m + '-01').length;
+    const [yr, mo] = m.split('-');
+    const monthLabel = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1] + ' ' + yr;
+    const isCurrent = m === currentMonth;
+    const mExpenses = expenses.filter(e => e.date && e.date.startsWith(m)).reduce((s, e) => s + (e.amount || 0), 0);
+    const mProfit = monthly[m] - mExpenses;
+    return `<tr${isCurrent ? ' style="background:var(--primary-50)"' : ''}><td class="fw-600">${monthLabel}</td><td class="fw-600">\u20B9${formatNum(monthly[m])}</td><td class="text-danger">\u20B9${formatNum(mExpenses)}</td><td class="${mProfit >= 0 ? 'text-success' : 'text-danger'} fw-600">\u20B9${formatNum(Math.abs(mProfit))} ${mProfit < 0 ? '(Loss)' : ''}</td><td>${mPayments.length}</td><td>${mCustomers.length}</td><td>${activeInMonth}</td></tr>`;
+  }).join('');
+
+  // Service-wise monthly revenue breakdown
+  const allServices = [...new Set(p.map(x => x.service).filter(Boolean))].sort();
+  const svcMonthly = {};
+  p.forEach(pay => {
+    const m = pay.date ? pay.date.substring(0, 7) : '';
+    const svc = pay.service || 'Other';
+    if (!m) return;
+    if (!svcMonthly[m]) svcMonthly[m] = {};
+    svcMonthly[m][svc] = (svcMonthly[m][svc] || 0) + pay.amount;
+  });
+
+  // Build header: Month | Service1 | Service2 | ... | Total
+  const svcColors2 = { };
+  const colorPalette = ['#4CAF50','#1A73E8','#FF6B35','#F29900','#D93025','#9C27B0','#00ACC1','#7CB342'];
+  allServices.forEach((s, i) => svcColors2[s] = colorPalette[i % colorPalette.length]);
+
+  document.getElementById('serviceRevHead').innerHTML = '<tr><th>Month</th>' + allServices.map(s => '<th style="color:' + (svcColors2[s]||'inherit') + '">' + s + '</th>').join('') + '<th>Total (\u20B9)</th></tr>';
+
+  const svcMonthsDesc = months.slice().reverse();
+  const svcGrandTotals = {};
+  allServices.forEach(s => svcGrandTotals[s] = 0);
+  let grandTotal = 0;
+
+  let svcRows = svcMonthsDesc.map(m => {
+    const [yr, mo] = m.split('-');
+    const monthLabel = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1] + ' ' + yr;
+    const isCur = m === currentMonth;
+    let rowTotal = 0;
+    const cells = allServices.map(s => {
+      const val = (svcMonthly[m] && svcMonthly[m][s]) || 0;
+      svcGrandTotals[s] += val;
+      rowTotal += val;
+      return '<td' + (val > 0 ? ' class="fw-600"' : ' class="text-muted"') + '>\u20B9' + formatNum(val) + '</td>';
+    }).join('');
+    grandTotal += rowTotal;
+    return '<tr' + (isCur ? ' style="background:var(--primary-50)"' : '') + '><td class="fw-600">' + monthLabel + '</td>' + cells + '<td class="fw-600">\u20B9' + formatNum(rowTotal) + '</td></tr>';
+  }).join('');
+
+  // Grand total footer row
+  svcRows += '<tr style="background:var(--surface-3);font-weight:700;border-top:2px solid var(--border)"><td>Grand Total</td>' + allServices.map(s => '<td style="color:' + (svcColors2[s]||'inherit') + '">\u20B9' + formatNum(svcGrandTotals[s]) + '</td>').join('') + '<td>\u20B9' + formatNum(grandTotal) + '</td></tr>';
+
+  document.getElementById('serviceRevBody').innerHTML = svcRows;
+
+  // Profit & Loss comparison chart
+  const expMonthly = {};
+  expenses.forEach(e => { const m = e.date ? e.date.substring(0, 7) : ''; if (m) expMonthly[m] = (expMonthly[m] || 0) + e.amount; });
+  const allMonths = [...new Set([...months, ...Object.keys(expMonthly)])].sort();
+  const revData = allMonths.map(m => monthly[m] || 0);
+  const expData = allMonths.map(m => expMonthly[m] || 0);
+  const profitData = allMonths.map((m, i) => revData[i] - expData[i]);
+
+  if (APP.charts.pl) APP.charts.pl.destroy();
+  const ctx3 = document.getElementById('plChart');
+  if (ctx3) {
+    APP.charts.pl = new Chart(ctx3, {
+      type: 'bar', data: {
+        labels: allMonths.map(m => { const [y, mo] = m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1] + ' ' + y.slice(2); }),
+        datasets: [
+          { label: 'Revenue', data: revData, backgroundColor: '#4CAF50', borderRadius: 4, barPercentage: 0.7 },
+          { label: 'Expenses', data: expData, backgroundColor: '#D93025', borderRadius: 4, barPercentage: 0.7 },
+          { label: 'Net Profit', data: profitData, type: 'line', borderColor: '#1A73E8', backgroundColor: 'rgba(26,115,232,0.1)', fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#1A73E8' }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } } }, scales: { y: { beginAtZero: true, ticks: { callback: v => '\u20B9' + formatNum(v) } }, x: { grid: { display: false } } } }
+    });
+  }
+}
+
+// ═══════════════════════════════════════
+// EXPENSES
+// ═══════════════════════════════════════
+function renderExpenses() {
+  const expenses = APP.data.expenses || [];
+  const cats = APP.data.settings.expenseCategories || [];
+  // Populate category filter dropdown
+  const catSel = document.getElementById('expFilterCat');
+  const curCat = catSel?.value || 'all';
+  if (catSel) {
+    catSel.innerHTML = '<option value="all">All Categories</option>' + cats.map(c => '<option' + (c === curCat ? ' selected' : '') + '>' + c + '</option>').join('');
+  }
+
+  const totalExp = expenses.reduce((s, e) => s + (e.amount || 0), 0);
+  const thisMonth = todayStr().substring(0, 7);
+  const thisMonthExp = expenses.filter(e => e.date && e.date.startsWith(thisMonth)).reduce((s, e) => s + (e.amount || 0), 0);
+
+  // Find highest category
+  const catTotals = {};
+  expenses.forEach(e => { if (e.category) catTotals[e.category] = (catTotals[e.category] || 0) + e.amount; });
+  const highestCat = Object.keys(catTotals).sort((a, b) => catTotals[b] - catTotals[a])[0] || '-';
+  const highestAmt = catTotals[highestCat] || 0;
+
+  document.getElementById('expenseStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fas fa-wallet"></i></div><div class="stat-value">\u20B9${formatNum(totalExp)}</div><div class="stat-label">Total Expenses</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--warning-bg);color:var(--warning)"><i class="fas fa-calendar-alt"></i></div><div class="stat-value">\u20B9${formatNum(thisMonthExp)}</div><div class="stat-label">This Month</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--info-bg);color:var(--info)"><i class="fas fa-chart-pie"></i></div><div class="stat-value">${highestCat}</div><div class="stat-label">Highest Category (\u20B9${formatNum(highestAmt)})</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--primary-50);color:var(--primary)"><i class="fas fa-receipt"></i></div><div class="stat-value">${expenses.length}</div><div class="stat-label">Total Entries</div></div>
+  `;
+
+  // Category pie chart
+  const catLabels = Object.keys(catTotals);
+  const catVals = catLabels.map(c => catTotals[c]);
+  const catColors = ['#D93025','#FF6B35','#F29900','#4CAF50','#1A73E8','#9C27B0','#00ACC1','#7CB342','#E91E63','#795548','#607D8B','#3F51B5','#FF9800','#009688'];
+  if (APP.charts.expenseCat) APP.charts.expenseCat.destroy();
+  const ctx1 = document.getElementById('expenseCatChart');
+  if (ctx1) {
+    APP.charts.expenseCat = new Chart(ctx1, {
+      type: 'doughnut', data: { labels: catLabels, datasets: [{ data: catVals, backgroundColor: catColors.slice(0, catLabels.length), borderWidth: 0 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true, pointStyle: 'rectRounded', font: { size: 11 } } } }, cutout: '60%' }
+    });
+  }
+
+  // Monthly trend bar chart
+  const monthly = {};
+  expenses.forEach(e => { const m = e.date ? e.date.substring(0, 7) : ''; if (m) monthly[m] = (monthly[m] || 0) + e.amount; });
+  const months = Object.keys(monthly).sort();
+  const mVals = months.map(m => monthly[m]);
+  if (APP.charts.expenseMonth) APP.charts.expenseMonth.destroy();
+  const ctx2 = document.getElementById('expenseMonthChart');
+  if (ctx2) {
+    APP.charts.expenseMonth = new Chart(ctx2, {
+      type: 'bar', data: {
+        labels: months.map(m => { const [y, mo] = m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1] + ' ' + y.slice(2); }),
+        datasets: [{ label: 'Expenses', data: mVals, backgroundColor: '#D93025', borderRadius: 6, barPercentage: 0.6 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: v => '\u20B9' + formatNum(v) } }, x: { grid: { display: false } } } }
+    });
+  }
+
+  filterExpenses();
+}
+
+function filterExpenses() {
+  const monthFilter = document.getElementById('expFilterMonth')?.value || '';
+  const catFilter = document.getElementById('expFilterCat')?.value || 'all';
+  let list = (APP.data.expenses || []).slice();
+  if (monthFilter) list = list.filter(e => e.date && e.date.startsWith(monthFilter));
+  if (catFilter !== 'all') list = list.filter(e => e.category === catFilter);
+
+  // Sort
+  const activeSort = Object.keys(APP.sortState).find(k => k.startsWith('expenses_'));
+  if (activeSort) {
+    const field = activeSort.replace('expenses_', '');
+    const dir = APP.sortState[activeSort];
+    list.sort((a, b) => {
+      let va = a[field] || '', vb = b[field] || '';
+      if (field === 'amount') { va = Number(va); vb = Number(vb); return dir === 'asc' ? va - vb : vb - va; }
+      if (typeof va === 'string') va = va.toLowerCase();
+      if (typeof vb === 'string') vb = vb.toLowerCase();
+      return dir === 'asc' ? (va < vb ? -1 : va > vb ? 1 : 0) : (va > vb ? -1 : va < vb ? 1 : 0);
+    });
+  } else {
+    list.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
+
+  // Pagination
+  const total = list.length;
+  const totalPages = Math.max(1, Math.ceil(total / APP.pageSize));
+  if (APP.page.expenses > totalPages) APP.page.expenses = totalPages;
+  const startIdx = (APP.page.expenses - 1) * APP.pageSize;
+  const paged = list.slice(startIdx, startIdx + APP.pageSize);
+
+  document.getElementById('expenseTableBody').innerHTML = paged.map(e => {
+    const receiptLink = e.receiptUrl ? '<a href="' + e.receiptUrl + '" target="_blank" class="text-primary" title="View Receipt"><i class="fas fa-external-link-alt"></i></a>' : '';
+    return '<tr><td class="fw-600">' + e.expId + '</td><td>' + formatDate(e.date) + '</td><td><span class="tag" style="background:var(--danger-bg);color:var(--danger)">' + (e.category || '') + '</span></td><td class="fw-600 text-danger">\u20B9' + formatNum(e.amount) + '</td><td>' + (e.paidTo || '-') + '</td><td>' + (e.mode || '-') + '</td><td class="text-muted">' + (e.note || '-') + ' ' + receiptLink + '</td><td><button class="btn btn-sm btn-ghost" onclick="showEditExpenseModal(\'' + e.expId + '\')" title="Edit"><i class="fas fa-edit"></i></button><button class="btn btn-sm btn-ghost text-danger" onclick="deleteExpense(\'' + e.expId + '\')" title="Delete"><i class="fas fa-trash-alt"></i></button></td></tr>';
+  }).join('');
+
+  document.getElementById('expCount').textContent = total + ' expense' + (total !== 1 ? 's' : '') + (totalPages > 1 ? ' \u2022 Page ' + APP.page.expenses + ' of ' + totalPages : '');
+
+  // Pagination controls
+  let pagEl = document.getElementById('expPagination');
+  if (totalPages > 1) {
+    pagEl.innerHTML = '<div class="d-flex align-center gap-12"><button class="btn btn-sm btn-outline" ' + (APP.page.expenses <= 1 ? 'disabled' : '') + ' onclick="APP.page.expenses=1;filterExpenses()"><i class="fas fa-angle-double-left"></i></button><button class="btn btn-sm btn-outline" ' + (APP.page.expenses <= 1 ? 'disabled' : '') + ' onclick="APP.page.expenses--;filterExpenses()"><i class="fas fa-angle-left"></i></button><span class="fw-600 fs-12">' + APP.page.expenses + ' / ' + totalPages + '</span><button class="btn btn-sm btn-outline" ' + (APP.page.expenses >= totalPages ? 'disabled' : '') + ' onclick="APP.page.expenses++;filterExpenses()"><i class="fas fa-angle-right"></i></button><button class="btn btn-sm btn-outline" ' + (APP.page.expenses >= totalPages ? 'disabled' : '') + ' onclick="APP.page.expenses=' + totalPages + ';filterExpenses()"><i class="fas fa-angle-double-right"></i></button></div>';
+  } else { pagEl.innerHTML = ''; }
+
+  updateSortIcons('expenses');
+}
+
+function showAddExpenseModal() {
+  const cats = APP.data.settings.expenseCategories || [];
+  const modes = APP.data.settings.paymentModes || [];
+  openModal('Add Expense', `
+    <div class="form-row"><div class="form-group"><label>Date <span class="required">*</span></label><input type="date" class="form-control" id="fExpDate" value="${todayStr()}"></div><div class="form-group"><label>Category <span class="required">*</span></label><select class="form-control" id="fExpCat"><option value="">Select</option>${cats.map(c => '<option>' + c + '</option>').join('')}</select></div></div>
+    <div class="form-row"><div class="form-group"><label>Amount (\u20B9) <span class="required">*</span></label><input type="number" class="form-control" id="fExpAmt" min="1" placeholder="0"></div><div class="form-group"><label>Payment Mode</label><select class="form-control" id="fExpMode"><option value="">Select</option>${modes.map(m => '<option>' + m + '</option>').join('')}</select></div></div>
+    <div class="form-group"><label>Paid To</label><input type="text" class="form-control" id="fExpPaidTo" placeholder="Vendor / Person name"></div>
+    <div class="form-group"><label>Note</label><textarea class="form-control" id="fExpNote" rows="2" placeholder="Description or details"></textarea></div>
+    <div class="form-group"><label>Receipt/Bill URL</label><input type="url" class="form-control" id="fExpReceipt" placeholder="https://..."></div>
+  `, '<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitExpense()"><i class="fas fa-check"></i> Add Expense</button>');
+}
+
+async function submitExpense() {
+  const date = document.getElementById('fExpDate').value;
+  const category = document.getElementById('fExpCat').value;
+  const amount = Number(document.getElementById('fExpAmt').value);
+  if (!date || !category || !amount || amount <= 0) { showToast('Date, Category and Amount are required', 'error'); return; }
+  const data = { date, category, amount, paidTo: document.getElementById('fExpPaidTo').value.trim(), mode: document.getElementById('fExpMode').value, note: document.getElementById('fExpNote').value.trim(), receiptUrl: document.getElementById('fExpReceipt').value.trim() };
+  const res = await apiPost('addExpense', data);
+  if (res.success) { showToast('Expense added! ID: ' + res.expId, 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error: ' + (res.error || 'Unknown'), 'error'); }
+}
+
+function showEditExpenseModal(expId) {
+  const e = (APP.data.expenses || []).find(x => x.expId === expId);
+  if (!e) return;
+  const cats = APP.data.settings.expenseCategories || [];
+  const modes = APP.data.settings.paymentModes || [];
+  openModal('Edit Expense: ' + expId, `
+    <div class="form-row"><div class="form-group"><label>Date <span class="required">*</span></label><input type="date" class="form-control" id="fEditExpDate" value="${e.date}"></div><div class="form-group"><label>Category <span class="required">*</span></label><select class="form-control" id="fEditExpCat">${cats.map(c => '<option' + (c === e.category ? ' selected' : '') + '>' + c + '</option>').join('')}</select></div></div>
+    <div class="form-row"><div class="form-group"><label>Amount (\u20B9) <span class="required">*</span></label><input type="number" class="form-control" id="fEditExpAmt" value="${e.amount}" min="1"></div><div class="form-group"><label>Payment Mode</label><select class="form-control" id="fEditExpMode"><option value="">Select</option>${modes.map(m => '<option' + (m === e.mode ? ' selected' : '') + '>' + m + '</option>').join('')}</select></div></div>
+    <div class="form-group"><label>Paid To</label><input type="text" class="form-control" id="fEditExpPaidTo" value="${e.paidTo || ''}"></div>
+    <div class="form-group"><label>Note</label><textarea class="form-control" id="fEditExpNote" rows="2">${e.note || ''}</textarea></div>
+    <div class="form-group"><label>Receipt/Bill URL</label><input type="url" class="form-control" id="fEditExpReceipt" value="${e.receiptUrl || ''}"></div>
+  `, '<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitEditExpense(\'' + expId + '\')"><i class="fas fa-save"></i> Save</button>');
+}
+
+async function submitEditExpense(expId) {
+  const date = document.getElementById('fEditExpDate').value;
+  const category = document.getElementById('fEditExpCat').value;
+  const amount = Number(document.getElementById('fEditExpAmt').value);
+  if (!date || !category || !amount || amount <= 0) { showToast('Date, Category and Amount are required', 'error'); return; }
+  const data = { expId, date, category, amount, paidTo: document.getElementById('fEditExpPaidTo').value.trim(), mode: document.getElementById('fEditExpMode').value, note: document.getElementById('fEditExpNote').value.trim(), receiptUrl: document.getElementById('fEditExpReceipt').value.trim() };
+  const res = await apiPost('updateExpense', data);
+  if (res.success) { showToast('Expense updated', 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error: ' + (res.error || 'Unknown'), 'error'); }
+}
+
+async function deleteExpense(expId) {
+  if (!confirm('Delete expense ' + expId + '? This cannot be undone.')) return;
+  const res = await apiPost('deleteExpense', { expId });
+  if (res.success) { showToast('Expense deleted', 'success'); await refreshData(); }
+  else { showToast('Error: ' + (res.error || 'Unknown'), 'error'); }
+}
+
+// ═══════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════
+function renderSettings() {
+  const s = APP.data.settings;
+  document.getElementById('setBizName').value = s.businessName || '';
+  document.getElementById('setBizPhone').value = s.businessPhone || '';
+  document.getElementById('setBizAddress').value = s.businessAddress || '';
+  document.getElementById('setBizEmail').value = s.businessEmail || '';
+  document.getElementById('setBizLogo').value = s.businessLogo || '';
+  document.getElementById('setApiUrl').value = APP.apiUrl || '';
+  document.getElementById('setSources').value = (s.sources || []).join('\n');
+  document.getElementById('setPurposes').value = (s.purposes || []).join('\n');
+  document.getElementById('setPayModes').value = (s.paymentModes || []).join('\n');
+  document.getElementById('setExpCats').value = (s.expenseCategories || []).join('\n');
+  renderServicesList();
+  renderCustomFieldsList();
+}
+
+function switchSettingsTab(tab) {
+  document.querySelectorAll('.settings-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.settings-panel').forEach(p => p.classList.toggle('active', p.id === 'settingsPanel-' + tab));
+}
+
+async function saveSettings() {
+  const data = {
+    businessName: document.getElementById('setBizName').value,
+    businessPhone: document.getElementById('setBizPhone').value,
+    businessAddress: document.getElementById('setBizAddress').value,
+    businessEmail: document.getElementById('setBizEmail').value,
+    businessLogo: document.getElementById('setBizLogo').value
+  };
+  Object.assign(APP.data.settings, data);
+  await apiPost('saveSettings', data);
+  updateBranding();
+  showToast('Settings saved! Logo & name updated.', 'success');
+}
+
+async function saveDropdowns() {
+  const data = {
+    sources: document.getElementById('setSources').value.split('\n').filter(Boolean),
+    purposes: document.getElementById('setPurposes').value.split('\n').filter(Boolean),
+    paymentModes: document.getElementById('setPayModes').value.split('\n').filter(Boolean),
+    expenseCategories: document.getElementById('setExpCats').value.split('\n').filter(Boolean)
+  };
+  Object.assign(APP.data.settings, data);
+  await apiPost('saveSettings', data);
+  showToast('Dropdown options saved', 'success');
+}
+
+// ═══════════════════════════════════════
+// MODALS
+// ═══════════════════════════════════════
+function openModal(title, bodyHTML, footerHTML) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').innerHTML = bodyHTML;
+  document.getElementById('modalFooter').innerHTML = footerHTML || '';
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal(keepConversion) { document.getElementById('modalOverlay').classList.remove('show'); if (!keepConversion) APP._convertingLeadId = null; APP._renewingFrom = null; }
+
+function showAddCustomerModal() {
+  const s = APP.data.settings;
+  const services = [...new Set(APP.data.plans.map(p => p.service))];
+  const planTypes = [...new Set(APP.data.plans.map(p => p.planType))];
+  openModal('Add New Customer', `
+    <div class="form-row"><div class="form-group"><label>Customer Name <span class="required">*</span></label><input type="text" class="form-control" id="fCustName" placeholder="Full name"></div><div class="form-group"><label>Mobile</label><input type="tel" class="form-control" id="fCustMobile" placeholder="10-digit number" maxlength="10"></div></div>
+    <div class="form-row"><div class="form-group"><label>Gender</label><select class="form-control" id="fCustGender"><option value="">Select</option><option>M</option><option>F</option><option>Other</option></select></div><div class="form-group"><label>Source</label><select class="form-control" id="fCustSource"><option value="">Select</option>${(s.sources||[]).map(x => `<option>${x}</option>`).join('')}</select></div></div>
+    <div class="form-row"><div class="form-group"><label>Purpose</label><select class="form-control" id="fCustPurpose"><option value="">Select</option>${(s.purposes||[]).map(x => `<option>${x}</option>`).join('')}</select></div><div class="form-group"><label>Address</label><input type="text" class="form-control" id="fCustAddress"></div></div>
+    <div class="form-row"><div class="form-group"><label>Service <span class="required">*</span></label><select class="form-control" id="fCustService" onchange="updatePlanTypeOptions();updatePlanPrice()"><option value="">Select</option>${services.map(x => `<option>${x}</option>`).join('')}</select></div><div class="form-group"><label>Plan Type <span class="required">*</span></label><select class="form-control" id="fCustPlan" onchange="updatePlanPrice()"><option value="">Select service first</option></select></div></div>
+    <div id="planPriceInfo" style="display:none;padding:8px 12px;background:var(--primary-50);border-radius:var(--radius);margin-bottom:12px;font-size:13px"><i class="fas fa-info-circle text-primary"></i> <span id="planPriceText"></span></div>
+    <div class="form-row"><div class="form-group"><label>Discount (\u20B9)</label><input type="number" class="form-control" id="fCustDiscount" value="0" min="0"></div><div class="form-group"><label>EMI Count</label><select class="form-control" id="fCustEMI"><option>1</option><option>2</option><option>3</option><option>4</option></select></div></div>
+    <div class="form-row"><div class="form-group"><label>Joining Date <span class="required">*</span></label><input type="date" class="form-control" id="fCustJoin" value="${todayStr()}"></div><div class="form-group"><label>Due Date</label><input type="date" class="form-control" id="fCustDue"></div></div>
+    ${(APP.data.settings.customFields || []).map(cf => {
+      const fieldId = 'fCustCustom_' + cf.name.replace(/\s+/g, '_');
+      if (cf.type === 'select') return `<div class="form-group"><label>${cf.name}${cf.required ? ' <span class="required">*</span>' : ''}</label><input type="text" class="form-control" id="${fieldId}" placeholder="${cf.name}"></div>`;
+      return `<div class="form-group"><label>${cf.name}${cf.required ? ' <span class="required">*</span>' : ''}</label><input type="${cf.type === 'number' ? 'number' : cf.type === 'date' ? 'date' : 'text'}" class="form-control" id="${fieldId}" placeholder="${cf.name}"></div>`;
+    }).join('')}
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitCustomer()"><i class="fas fa-check"></i> Add Customer</button>`);
+}
+
+function updatePlanTypeOptions() {
+  const svc = document.getElementById('fCustService').value;
+  const planSel = document.getElementById('fCustPlan');
+  if (!svc) { planSel.innerHTML = '<option value="">Select service first</option>'; return; }
+  const types = [...new Set(APP.data.plans.filter(p => p.service === svc).map(p => p.planType))];
+  planSel.innerHTML = '<option value="">Select</option>' + types.map(t => `<option>${t}</option>`).join('');
+}
+
+function updatePlanPrice() {
+  const svc = document.getElementById('fCustService').value;
+  const pt = document.getElementById('fCustPlan').value;
+  const info = document.getElementById('planPriceInfo');
+  const text = document.getElementById('planPriceText');
+  if (svc && pt) {
+    const plan = APP.data.plans.find(p => p.service === svc && p.planType === pt);
+    if (plan) { text.innerHTML = `<strong>${svc} — ${pt}</strong>: \u20B9${formatNum(plan.price)} for ${plan.duration} month(s)`; info.style.display = 'block'; }
+    else { text.innerHTML = `No plan found for ${svc} — ${pt}. Please create it first in Plans & Pricing.`; info.style.display = 'block'; }
+  } else { info.style.display = 'none'; }
+}
+
+async function submitCustomer() {
+  const name = document.getElementById('fCustName').value.trim();
+  const service = document.getElementById('fCustService').value;
+  const planType = document.getElementById('fCustPlan').value;
+  const joiningDate = document.getElementById('fCustJoin').value;
+  if (!name || !service || !planType || !joiningDate) { showToast('Please fill all required fields', 'error'); return; }
+  if (name.length < 2) { showToast('Name must be at least 2 characters', 'error'); return; }
+  const mobile = document.getElementById('fCustMobile').value.trim();
+  if (mobile && !/^\d{10}$/.test(mobile)) { showToast('Mobile must be exactly 10 digits', 'error'); return; }
+  const joinDate = new Date(joiningDate);
+  const thirtyAgo = new Date(); thirtyAgo.setDate(thirtyAgo.getDate() - 30);
+  if (joinDate < thirtyAgo) { showToast('Joining date cannot be more than 30 days in the past', 'error'); return; }
+  const plan = APP.data.plans.find(p => p.service === service && p.planType === planType);
+  const discount = Number(document.getElementById('fCustDiscount').value) || 0;
+  if (discount < 0 || (plan && discount >= plan.price)) { showToast('Discount must be >= 0 and less than plan price', 'error'); return; }
+  const emiCount = Number(document.getElementById('fCustEMI').value) || 1;
+  if (emiCount < 1 || emiCount > 4) { showToast('EMI count must be between 1 and 4', 'error'); return; }
+  const duplicate = APP.data.customers.find(c => c.name.toUpperCase() === name.toUpperCase() && c.service === service && c.planType === planType && c.status === 'Active');
+  if (duplicate) { if (!confirm('This customer already has an active enrollment for this service/plan. Continue anyway?')) return; }
+  // Collect custom field values
+  const customFieldValues = {};
+  (APP.data.settings.customFields || []).forEach(cf => {
+    const fieldId = 'fCustCustom_' + cf.name.replace(/\s+/g, '_');
+    const el = document.getElementById(fieldId);
+    if (el) {
+      const val = el.value.trim();
+      if (cf.required && !val) { showToast(`${cf.name} is required`, 'error'); customFieldValues._invalid = true; return; }
+      customFieldValues[cf.name] = val;
+    }
+  });
+  if (customFieldValues._invalid) return;
+  const data = { name, mobile, gender: document.getElementById('fCustGender').value, source: document.getElementById('fCustSource').value, purpose: document.getElementById('fCustPurpose').value, address: document.getElementById('fCustAddress').value, service, planType, discount: document.getElementById('fCustDiscount').value, emiCount: document.getElementById('fCustEMI').value, joiningDate, dueDate: document.getElementById('fCustDue').value, customFields: customFieldValues };
+  const res = await apiPost('addCustomer', data);
+  if (res.success) {
+    const isRenewal = !!APP._renewingFrom;
+    if (isRenewal) {
+      const oldCust = APP.data.customers.find(x => x.enrollmentId === APP._renewingFrom);
+      if (oldCust) { oldCust.status = 'Renewed'; oldCust.remarks = 'Renewed as ' + res.enrollmentId; }
+    }
+    showToast(isRenewal ? `Customer ${name} renewed! New ID: ${res.enrollmentId}` : `Customer ${name} added! ID: ${res.enrollmentId}`, 'success');
+    APP._renewingFrom = null;
+    // If converting a lead, mark it as Enrolled now that customer is created
+    if (APP._convertingLeadId) {
+      await apiPost('updateLead', { leadId: APP._convertingLeadId, stage: 'Enrolled', lastFollowUpDate: todayStr() });
+      showToast('Lead marked as Enrolled', 'success');
+      APP._convertingLeadId = null;
+    }
+    closeModal();
+    await refreshData();
+  } else { showToast('Error: ' + (res.error || 'Unknown'), 'error'); }
+}
+
+function showAddPaymentModal(enrollmentId) {
+  const customers = [...new Set(APP.data.customers.map(c => c.name))];
+  openModal('Record Payment', `
+    <div class="form-row"><div class="form-group"><label>Customer <span class="required">*</span></label><select class="form-control" id="fPayCust" onchange="loadPayEnrollments()"><option value="">Select customer</option>${customers.map(c => `<option>${c}</option>`).join('')}</select></div><div class="form-group"><label>Enrollment ID <span class="required">*</span></label><select class="form-control" id="fPayEnr" onchange="updatePayDueInfo()"><option value="">Select customer first</option></select></div></div>
+    <div id="payDueInfo" style="display:none;padding:8px 12px;background:var(--primary-50);border-radius:var(--radius);margin-bottom:12px;font-size:13px"></div>
+    <div class="form-row"><div class="form-group"><label>Date <span class="required">*</span></label><input type="date" class="form-control" id="fPayDate" value="${todayStr()}"></div><div class="form-group"><label>Amount (\u20B9) <span class="required">*</span></label><input type="number" class="form-control" id="fPayAmt" min="1"></div></div>
+    <div class="form-group"><label>Payment Mode <span class="required">*</span></label><select class="form-control" id="fPayMode"><option value="">Select</option>${(APP.data.settings.paymentModes||['Cash','UPI','Card','Online','Cheque']).map(m => `<option>${m}</option>`).join('')}</select></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-accent" onclick="submitPayment()"><i class="fas fa-check"></i> Record Payment</button>`);
+  if (enrollmentId) {
+    const cust = APP.data.customers.find(c => c.enrollmentId === enrollmentId);
+    if (cust) {
+      setTimeout(() => {
+        document.getElementById('fPayCust').value = cust.name;
+        loadPayEnrollments();
+        setTimeout(() => { document.getElementById('fPayEnr').value = enrollmentId; }, 100);
+      }, 50);
+    }
+  }
+}
+
+function loadPayEnrollments() {
+  const name = document.getElementById('fPayCust').value;
+  const enrs = APP.data.customers.filter(c => c.name === name);
+  const sel = document.getElementById('fPayEnr');
+  sel.innerHTML = '<option value="">Select enrollment</option>' + enrs.map(c => `<option value="${c.enrollmentId}">${c.enrollmentId} \u2014 ${c.service} (${c.planType}) \u2014 Due: \u20b9${formatNum(c.dueAmount||0)}</option>`).join('');
+  if (enrs.length === 1) sel.value = enrs[0].enrollmentId;
+  updatePayDueInfo();
+}
+
+function updatePayDueInfo() {
+  const enrId = document.getElementById('fPayEnr').value;
+  let infoEl = document.getElementById('payDueInfo');
+  if (!infoEl) return;
+  if (!enrId) { infoEl.style.display = 'none'; return; }
+  const cust = APP.data.customers.find(c => c.enrollmentId === enrId);
+  if (!cust) { infoEl.style.display = 'none'; return; }
+  const net = cust.planPrice - (cust.discount||0);
+  infoEl.innerHTML = `<i class="fas fa-info-circle text-primary"></i> Plan: \u20b9${formatNum(net)} | Paid: \u20b9${formatNum(cust.totalPaid||0)} | <strong class="${cust.dueAmount > 0 ? 'text-danger' : 'text-success'}">Due: \u20b9${formatNum(cust.dueAmount||0)}</strong>`;
+  infoEl.style.display = 'block';
+}
+
+async function submitPayment() {
+  const customerName = document.getElementById('fPayCust').value;
+  const enrollmentId = document.getElementById('fPayEnr').value;
+  const paymentDate = document.getElementById('fPayDate').value;
+  const amount = document.getElementById('fPayAmt').value;
+  const paymentMode = document.getElementById('fPayMode').value;
+  if (!customerName || !enrollmentId || !paymentDate || !amount || !paymentMode) { showToast('Please fill all required fields', 'error'); return; }
+  if (Number(amount) <= 0) { showToast('Amount must be greater than 0', 'error'); return; }
+  if (new Date(paymentDate) > new Date()) { showToast('Payment date cannot be in the future', 'error'); return; }
+  const payCustomer = APP.data.customers.find(c => c.enrollmentId === enrollmentId);
+  if (payCustomer && Number(amount) > payCustomer.dueAmount && payCustomer.dueAmount > 0) { if (!confirm(`Amount (₹${Number(amount).toLocaleString('en-IN')}) exceeds outstanding due (₹${payCustomer.dueAmount.toLocaleString('en-IN')}). Continue anyway?`)) return; }
+  const res = await apiPost('addPayment', { customerName, enrollmentId, paymentDate, amount, paymentMode });
+  if (res.success) { showToast(`Payment recorded! Receipt: ${res.receipt}`, 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error: ' + (res.error||'Unknown'), 'error'); }
+}
+
+function showAddLeadModal() {
+  const s = APP.data.settings;
+  const services = [...new Set(APP.data.plans.map(p => p.service))];
+  openModal('Add New Lead', `
+    <div class="form-row"><div class="form-group"><label>Name <span class="required">*</span></label><input type="text" class="form-control" id="fLeadName"></div><div class="form-group"><label>Mobile</label><input type="tel" class="form-control" id="fLeadMobile" maxlength="10"></div></div>
+    <div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" id="fLeadEmail"></div><div class="form-group"><label>Source</label><select class="form-control" id="fLeadSource"><option value="">Select</option>${(s.sources||[]).map(x => `<option>${x}</option>`).join('')}</select></div></div>
+    <div class="form-row"><div class="form-group"><label>Interested Service</label><select class="form-control" id="fLeadService"><option value="">Select</option>${services.map(x => `<option>${x}</option>`).join('')}</select></div><div class="form-group"><label>Priority</label><select class="form-control" id="fLeadPriority"><option>Hot</option><option selected>Warm</option><option>Cold</option></select></div></div>
+    <div class="form-group"><label>Notes</label><textarea class="form-control" id="fLeadNotes" rows="3"></textarea></div>
+    <div class="form-group"><label>Next Follow-up Date</label><input type="date" class="form-control" id="fLeadFollow"></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitLead()"><i class="fas fa-check"></i> Add Lead</button>`);
+}
+
+async function submitLead() {
+  const name = document.getElementById('fLeadName').value.trim();
+  if (!name) { showToast('Name is required', 'error'); return; }
+  if (name.length < 2) { showToast('Name must be at least 2 characters', 'error'); return; }
+  const leadMobile = document.getElementById('fLeadMobile').value.trim();
+  if (leadMobile && !/^\d{10}$/.test(leadMobile)) { showToast('Mobile must be exactly 10 digits', 'error'); return; }
+  const dupLead = APP.data.leads.find(l => l.name.toUpperCase() === name.toUpperCase() && leadMobile && l.mobile === leadMobile);
+  if (dupLead) { if (!confirm('A lead with this name/mobile already exists. Continue anyway?')) return; }
+  const data = { name, mobile: leadMobile, email: document.getElementById('fLeadEmail').value, source: document.getElementById('fLeadSource').value, interestedService: document.getElementById('fLeadService').value, priority: document.getElementById('fLeadPriority').value, notes: document.getElementById('fLeadNotes').value, nextFollowUpDate: document.getElementById('fLeadFollow').value };
+  const res = await apiPost('addLead', data);
+  if (res.success) { showToast(`Lead ${name} added!`, 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error: ' + (res.error||'Unknown'), 'error'); }
+}
+
+// ═══════════════════════════════════════
+// CUSTOMER PROFILE
+// ═══════════════════════════════════════
+function showCustomerProfile(enrollmentId) {
+  const c = APP.data.customers.find(x => x.enrollmentId === enrollmentId);
+  if (!c) return;
+  const payments = APP.data.payments.filter(p => p.enrollmentId === enrollmentId).sort((a,b) => b.date.localeCompare(a.date));
+  const allEnrollments = APP.data.customers.filter(x => x.name === c.name);
+  const initials = c.name.split(' ').map(w => w[0]).join('').slice(0, 2);
+  const daysLeft = daysDiff(c.planExpiry);
+  const expCls = daysLeft < 0 ? 'badge-expired' : daysLeft <= 7 ? 'badge-hot' : 'badge-active';
+  const expTxt = daysLeft < 0 ? 'Expired' : daysLeft <= 7 ? 'Expiring soon' : daysLeft + ' days left';
+
+  document.getElementById('profileBody').innerHTML = `
+    <div class="profile-header"><div class="profile-avatar">${initials}</div><div style="flex:1"><div class="profile-name">${c.name}</div><div class="profile-meta">${c.mobile||''} \u2022 ${c.enrollmentId} \u2022 <span class="badge-status badge-${c.status?.toLowerCase()}" style="display:inline">${c.status}</span></div></div><button class="btn btn-sm btn-outline" onclick="closeProfile();showEditCustomerModal('${enrollmentId}')" title="Edit Customer"><i class="fas fa-edit"></i> Edit</button></div>
+    <div class="grid-2 mb-24"><div class="card"><div class="card-body" style="padding:14px 18px"><div class="text-muted fs-12 mb-8">PERSONAL INFO</div><div style="display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px"><span class="text-muted">Gender</span><span>${c.gender||'-'}</span><span class="text-muted">Source</span><span>${c.source||'-'}</span><span class="text-muted">Purpose</span><span>${c.purpose||'-'}</span><span class="text-muted">Address</span><span>${c.address||'-'}</span>${c.customFields ? Object.entries(c.customFields).filter(([k,v])=>v).map(([k,v]) => `<span class="text-muted">${k}</span><span>${v}</span>`).join('') : ''}</div></div></div><div class="card"><div class="card-body" style="padding:14px 18px"><div class="text-muted fs-12 mb-8">PLAN DETAILS</div><div style="display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px"><span class="text-muted">Service</span><span class="fw-600">${c.service}</span><span class="text-muted">Plan</span><span>${c.planType}</span><span class="text-muted">Price</span><span>\u20B9${formatNum(c.planPrice)}</span><span class="text-muted">Discount</span><span>\u20B9${formatNum(c.discount||0)}</span><span class="text-muted">Joining</span><span>${formatDate(c.joiningDate)}</span><span class="text-muted">Expiry</span><span>${formatDate(c.planExpiry)} <span class="badge-status ${expCls}" style="margin-left:6px;display:inline">${expTxt}</span></span></div></div></div></div>
+    <div class="grid-3 mb-24"><div style="padding:14px;background:var(--success-bg);border-radius:var(--radius);text-align:center"><div class="fs-12 text-muted">Total Paid</div><div style="font-size:20px;font-weight:700;color:var(--success)">\u20B9${formatNum(c.totalPaid||0)}</div></div><div style="padding:14px;background:${c.dueAmount > 0 ? 'var(--danger-bg)' : 'var(--success-bg)'};border-radius:var(--radius);text-align:center"><div class="fs-12 text-muted">Due Amount</div><div style="font-size:20px;font-weight:700;color:${c.dueAmount > 0 ? 'var(--danger)' : 'var(--success)'}">\u20B9${formatNum(c.dueAmount||0)}</div></div><div style="padding:14px;background:var(--info-bg);border-radius:var(--radius);text-align:center"><div class="fs-12 text-muted">EMI</div><div style="font-size:20px;font-weight:700;color:var(--info)">${c.emiCount||1} parts</div></div></div>
+    ${allEnrollments.length > 1 ? `<div class="card mb-16"><div class="card-header"><h3>All Enrollments (${allEnrollments.length})</h3></div><div class="card-body">${allEnrollments.map(e => `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)"><div><span class="fw-600 text-primary">${e.enrollmentId}</span> \u2014 ${e.service} (${e.planType})</div><span class="badge-status badge-${e.status?.toLowerCase()}">${e.status}</span></div>`).join('')}</div></div>` : ''}
+    <div class="card"><div class="card-header"><h3>Payment History (${payments.length})</h3><button class="btn btn-sm btn-accent" onclick="closeProfile();showAddPaymentModal('${enrollmentId}')"><i class="fas fa-plus"></i> Pay</button></div><div class="card-body">${payments.length ? '<div class="timeline">' + payments.map(p => `<div class="timeline-item"><div class="tl-dot"></div><div class="tl-date">${formatDate(p.date)} \u2022 ${p.receipt}</div><div class="tl-content"><span class="tl-amount">\u20B9${formatNum(p.amount)}</span> via ${p.mode} ${p.balance > 0 ? '\u2014 Balance: \u20B9' + formatNum(p.balance) : '\u2014 Paid in full'}</div></div>`).join('') + '</div>' : '<div class="empty-state"><p>No payments yet</p></div>'}</div></div>
+  `;
+  document.getElementById('profileOverlay').classList.add('show');
+}
+function closeProfile() { document.getElementById('profileOverlay').classList.remove('show'); }
+
+// ═══════════════════════════════════════
+// LEAD DETAIL
+// ═══════════════════════════════════════
+function showLeadDetail(leadId) {
+  const l = APP.data.leads.find(x => x.leadId === leadId);
+  if (!l) return;
+  const stages = APP.data.settings.leadStages || ['New Lead','Contacted','Interested','Trial Booked','Trial Done','Enrolled','Lost'];
+  const linkedCustomer = l.stage === 'Enrolled' ? APP.data.customers.find(c => c.name === l.name.toUpperCase() || c.name === l.name) : null;
+  const enrolledInfo = l.stage === 'Enrolled' ? `<div style="padding:10px 14px;background:var(--success-bg);border-radius:var(--radius);margin-bottom:12px;font-size:13px"><i class="fas fa-check-circle text-success"></i> <strong>Converted to Customer</strong>${linkedCustomer ? ` — <span class="text-primary fw-600" style="cursor:pointer" onclick="closeModal();showCustomerProfile('${linkedCustomer.enrollmentId}')">${linkedCustomer.enrollmentId} (${linkedCustomer.service})</span>` : ''}</div>` : '';
+  openModal(`Lead: ${l.name}`, `
+    ${enrolledInfo}
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13px;margin-bottom:16px"><span class="text-muted">Mobile</span><span>${l.mobile||'-'}</span><span class="text-muted">Email</span><span>${l.email||'-'}</span><span class="text-muted">Source</span><span>${l.source||'-'}</span><span class="text-muted">Interest</span><span class="fw-600">${l.interestedService||'-'}</span><span class="text-muted">Created</span><span>${formatDate(l.createdDate)}</span><span class="text-muted">Last Follow-up</span><span>${formatDate(l.lastFollowUpDate)}</span></div>
+    <div class="form-group"><label>Stage</label><select class="form-control" id="fLeadStage"${l.stage === 'Enrolled' ? ' disabled style="background:var(--surface-3);cursor:not-allowed"' : ''}>${stages.filter(s => s !== 'Enrolled' || l.stage === 'Enrolled').map(s => `<option ${s === l.stage ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
+    <div class="form-row"><div class="form-group"><label>Priority</label><select class="form-control" id="fLeadPri"><option ${l.priority==='Hot'?'selected':''}>Hot</option><option ${l.priority==='Warm'?'selected':''}>Warm</option><option ${l.priority==='Cold'?'selected':''}>Cold</option></select></div><div class="form-group"><label>Next Follow-up</label><input type="date" class="form-control" id="fLeadNextFU" value="${l.nextFollowUpDate||''}"></div></div>
+    <div class="form-group"><label>Notes</label><textarea class="form-control" id="fLeadEditNotes" rows="3">${l.notes||''}</textarea></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button>${l.stage !== 'Enrolled' ? `<button class="btn btn-success" onclick="convertLeadToCustomer('${leadId}')"><i class="fas fa-user-plus"></i> Convert</button>` : ''}<button class="btn btn-primary" onclick="updateLeadFromModal('${leadId}')"><i class="fas fa-save"></i> Save</button>`);
+}
+
+async function updateLeadFromModal(leadId) {
+  const newStage = document.getElementById('fLeadStage').value;
+  const lead = APP.data.leads.find(l => l.leadId === leadId);
+  if (newStage === 'Enrolled' && lead && lead.stage !== 'Enrolled') {
+    showToast('Use the "Convert" button to enroll a lead as customer', 'warning');
+    return;
+  }
+  const data = { leadId, stage: newStage, priority: document.getElementById('fLeadPri').value, nextFollowUpDate: document.getElementById('fLeadNextFU').value, notes: document.getElementById('fLeadEditNotes').value, lastFollowUpDate: todayStr() };
+  await apiPost('updateLead', data);
+  showToast('Lead updated', 'success');
+  closeModal(); await refreshData();
+}
+
+async function convertLeadToCustomer(leadId) {
+  const l = APP.data.leads.find(x => x.leadId === leadId);
+  if (!l) return;
+  APP._convertingLeadId = leadId; // track which lead is being converted
+  closeModal(true); // keep conversion flag alive
+  showAddCustomerModal();
+  setTimeout(() => {
+    document.getElementById('fCustName').value = l.name;
+    document.getElementById('fCustMobile').value = l.mobile || '';
+    if (l.interestedService) { document.getElementById('fCustService').value = l.interestedService; updatePlanTypeOptions(); }
+  }, 100);
+}
+
+// ═══════════════════════════════════════
+// RECEIPT
+// ═══════════════════════════════════════
+function showReceipt(receiptId) {
+  const p = APP.data.payments.find(x => x.receipt === receiptId);
+  if (!p) return;
+  const biz = APP.data.settings;
+  const cust = APP.data.customers.find(c => c.enrollmentId === p.enrollmentId);
+  const emiInfo = cust && cust.emiCount > 1 ? `EMI ${getEmiInstallment(p, cust)} of ${cust.emiCount}` : '';
+  openModal('Payment Receipt', `
+    <div class="receipt">
+      <div class="receipt-header">${biz.businessLogo ? '<img class="receipt-logo" src="' + biz.businessLogo + '" alt="Logo">' : ''}<h2>${biz.businessName || 'The Fit Katha Wellness'}</h2><p>${biz.businessAddress||''} ${biz.businessPhone ? ' \u2022 ' + biz.businessPhone : ''}${biz.businessEmail ? ' \u2022 ' + biz.businessEmail : ''}</p><p style="margin-top:8px;font-size:13px;font-weight:600">PAYMENT RECEIPT</p></div>
+      <div class="receipt-row"><span class="label">Receipt No.</span><span class="value">${p.receipt}</span></div>
+      <div class="receipt-row"><span class="label">Date</span><span class="value">${formatDate(p.date)}</span></div>
+      <div style="border-top:1px solid var(--border-light);margin:8px 0"></div>
+      <div class="receipt-row"><span class="label">Customer</span><span class="value">${p.name}</span></div>
+      <div class="receipt-row"><span class="label">Mobile</span><span class="value">${p.mobile || cust?.mobile || '-'}</span></div>
+      <div class="receipt-row"><span class="label">Enrollment ID</span><span class="value">${p.enrollmentId}</span></div>
+      <div style="border-top:1px solid var(--border-light);margin:8px 0"></div>
+      <div class="receipt-row"><span class="label">Service</span><span class="value">${p.service} (${p.planType})</span></div>
+      <div class="receipt-row"><span class="label">Plan Price</span><span class="value">\u20B9${formatNum(p.planPrice||cust?.planPrice||0)}</span></div>
+      ${cust && cust.discount > 0 ? `<div class="receipt-row"><span class="label">Discount</span><span class="value text-success">-\u20B9${formatNum(cust.discount)}</span></div>` : ''}
+      ${emiInfo ? `<div class="receipt-row"><span class="label">Installment</span><span class="value">${emiInfo}</span></div>` : ''}
+      <div class="receipt-row"><span class="label">Payment Mode</span><span class="value">${p.mode}</span></div>
+      <div style="border-top:2px dashed var(--border);margin:12px 0"></div>
+      <div style="text-align:center;font-size:11px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.5px">Amount Paid</div>
+      <div class="receipt-total">\u20B9${formatNum(p.amount)}</div>
+      <div class="receipt-amount-words">${amountInWords(p.amount)}</div>
+      <div class="receipt-row"><span class="label">Total Paid Till Date</span><span class="value">\u20B9${formatNum(cust?.totalPaid||p.amount)}</span></div>
+      <div class="receipt-row"><span class="label">Balance Due</span><span class="value ${p.balance > 0 ? 'text-danger' : 'text-success'}">\u20B9${formatNum(p.balance||0)}</span></div>
+      ${p.balance > 0 && cust?.dueDate ? `<div class="receipt-row"><span class="label">Next Due Date</span><span class="value">${formatDate(cust.dueDate)}</span></div>` : ''}
+      <div class="receipt-signature">
+        <div class="receipt-sig-block"><div class="receipt-sig-line">Customer Signature</div></div>
+        <div class="receipt-sig-block"><div class="receipt-sig-line">Authorised Signatory</div></div>
+      </div>
+      <div class="receipt-footer">This is a computer-generated receipt.<br>Thank you for choosing ${biz.businessName || 'FitKatha'}!</div>
+    </div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="printReceipt()"><i class="fas fa-print"></i> Print</button>`);
+}
+
+function getEmiInstallment(payment, customer) {
+  const custPayments = APP.data.payments.filter(p => p.enrollmentId === customer.enrollmentId).sort((a,b) => a.date.localeCompare(b.date));
+  const idx = custPayments.findIndex(p => p.receipt === payment.receipt);
+  return idx >= 0 ? idx + 1 : 1;
+}
+
+function printReceipt() {
+  const content = document.querySelector('.receipt').outerHTML;
+  const win = window.open('', '_blank');
+  win.document.write(`<html><head><title>Receipt</title><style>body{font-family:Inter,sans-serif;padding:20px}.receipt{max-width:420px;margin:0 auto;border:1px solid #ddd;padding:30px;border-radius:8px}.receipt-header{text-align:center;margin-bottom:20px;padding-bottom:16px;border-bottom:2px dashed #ddd}.receipt-header h2{font-size:20px;color:#1B5E20}.receipt-row{display:flex;justify-content:space-between;padding:6px 0}.receipt-row .label{color:#666}.receipt-row .value{font-weight:600;text-align:right}.receipt-total{font-size:22px;font-weight:700;color:#1B5E20;text-align:center;margin:16px 0}.receipt-amount-words{background:#f5f5f5;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0 4px;font-style:italic;color:#555}.receipt-signature{display:flex;justify-content:space-between;margin-top:36px}.receipt-sig-block{text-align:center;width:45%}.receipt-sig-line{border-top:1px solid #666;margin-top:40px;padding-top:6px;font-size:11px;color:#666}.receipt-footer{text-align:center;margin-top:16px;padding-top:14px;border-top:2px dashed #ddd;font-size:11px;color:#999}.text-danger{color:#d93025}.text-success{color:#0f9d58}@media print{body{padding:0}.receipt{border:none;box-shadow:none}}</style></head><body>${content}</body></html>`);
+  win.document.close();
+  win.print();
+}
+
+// ═══════════════════════════════════════
+// QUICK ACTIONS
+// ═══════════════════════════════════════
+function showQuickActions() {
+  openModal('Quick Actions', `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="card" style="cursor:pointer;text-align:center;padding:24px" onclick="closeModal();showAddCustomerModal()"><i class="fas fa-user-plus" style="font-size:24px;color:var(--primary);margin-bottom:8px"></i><div class="fw-600">Add Customer</div><div class="text-muted fs-12">New enrollment</div></div>
+      <div class="card" style="cursor:pointer;text-align:center;padding:24px" onclick="closeModal();showAddPaymentModal()"><i class="fas fa-rupee-sign" style="font-size:24px;color:var(--accent);margin-bottom:8px"></i><div class="fw-600">Record Payment</div><div class="text-muted fs-12">Collect payment</div></div>
+      <div class="card" style="cursor:pointer;text-align:center;padding:24px" onclick="closeModal();showAddLeadModal()"><i class="fas fa-user-tag" style="font-size:24px;color:var(--info);margin-bottom:8px"></i><div class="fw-600">Add Lead</div><div class="text-muted fs-12">New enquiry</div></div>
+      <div class="card" style="cursor:pointer;text-align:center;padding:24px" onclick="closeModal();navigate('expiry')"><i class="fas fa-clock" style="font-size:24px;color:var(--warning);margin-bottom:8px"></i><div class="fw-600">Expiry Check</div><div class="text-muted fs-12">Renewal alerts</div></div>
+    </div>
+  `, '');
+}
+
+function renewCustomer(enrollmentId) {
+  const c = APP.data.customers.find(x => x.enrollmentId === enrollmentId);
+  if (!c) return;
+  APP._renewingFrom = enrollmentId;
+  showAddCustomerModal();
+  setTimeout(() => {
+    // Update modal title & button for renewal
+    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-sync-alt text-primary"></i> Renew Customer: ' + c.name;
+    const submitBtn = document.querySelector('#modalFooter .btn-primary');
+    if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Customer';
+    // Show renewal info banner above the form
+    const modalBody = document.getElementById('modalBody');
+    if (modalBody) {
+      const banner = document.createElement('div');
+      banner.style.cssText = 'padding:10px 14px;background:var(--warning-light,#fff3cd);border:1px solid var(--warning,#ffc107);border-radius:var(--radius);margin-bottom:14px;font-size:13px';
+      banner.innerHTML = '<i class="fas fa-sync-alt" style="color:var(--warning)"></i> <strong>Renewal</strong> of ' + c.enrollmentId + ' — Previous plan expired ' + formatDate(c.planExpiry || '') + '. Details pre-filled, update as needed.';
+      modalBody.insertBefore(banner, modalBody.firstChild);
+    }
+    // Pre-fill all fields from previous enrollment
+    document.getElementById('fCustName').value = c.name;
+    document.getElementById('fCustMobile').value = c.mobile || '';
+    document.getElementById('fCustGender').value = c.gender || '';
+    document.getElementById('fCustAddress').value = c.address || '';
+    document.getElementById('fCustSource').value = c.source || '';
+    document.getElementById('fCustPurpose').value = c.purpose || '';
+    document.getElementById('fCustService').value = c.service || '';
+    updatePlanTypeOptions();
+    document.getElementById('fCustPlan').value = c.planType || '';
+    document.getElementById('fCustDiscount').value = c.discount || 0;
+    document.getElementById('fCustEMI').value = c.emiCount || 1;
+    document.getElementById('fCustJoin').value = todayStr();
+    // Trigger price info update so banner shows after user changes plan
+    updatePlanPrice();
+  }, 100);
+}
+
+// ═══════════════════════════════════════
+// EDIT CUSTOMER
+// ═══════════════════════════════════════
+function showEditCustomerModal(enrollmentId) {
+  const c = APP.data.customers.find(x => x.enrollmentId === enrollmentId);
+  if (!c) return;
+  const customFieldsHtml = (APP.data.settings.customFields || []).map(f => {
+    const val = (c.customFields && c.customFields[f.name]) || '';
+    if (f.type === 'dropdown') {
+      return `<div class="form-group"><label>${f.name} ${f.required ? '<span class="required">*</span>' : ''}</label><select class="form-control edit-custom-field" data-field="${f.name}"><option value="">Select...</option>${(f.options||[]).map(o => `<option ${o === val ? 'selected' : ''}>${o}</option>`).join('')}</select></div>`;
+    }
+    return `<div class="form-group"><label>${f.name} ${f.required ? '<span class="required">*</span>' : ''}</label><input type="${f.type === 'date' ? 'date' : 'text'}" class="form-control edit-custom-field" data-field="${f.name}" value="${val}"></div>`;
+  }).join('');
+  openModal(`Edit Customer: ${c.enrollmentId}`, `
+    <div class="form-row"><div class="form-group"><label>Name <span class="required">*</span></label><input type="text" class="form-control" id="fEditCustName" value="${c.name}"></div><div class="form-group"><label>Mobile <span class="required">*</span></label><input type="tel" class="form-control" id="fEditCustMobile" value="${c.mobile||''}" maxlength="10"></div></div>
+    <div class="form-row"><div class="form-group"><label>Gender</label><select class="form-control" id="fEditCustGender"><option value="">Select</option><option ${c.gender==='M'?'selected':''}>M</option><option ${c.gender==='F'?'selected':''}>F</option><option ${c.gender==='Other'?'selected':''}>Other</option></select></div><div class="form-group"><label>Source</label><input type="text" class="form-control" id="fEditCustSource" value="${c.source||''}"></div></div>
+    <div class="form-group"><label>Purpose</label><input type="text" class="form-control" id="fEditCustPurpose" value="${c.purpose||''}"></div>
+    <div class="form-group"><label>Address</label><textarea class="form-control" id="fEditCustAddress" rows="2">${c.address||''}</textarea></div>
+    <div style="padding:12px;background:var(--surface-3);border-radius:var(--radius);margin-bottom:12px"><div class="text-muted fs-12 mb-8">PLAN INFO (read only)</div><div style="font-size:13px">${c.service} — ${c.planType} — ₹${formatNum(c.planPrice)} — Joined: ${formatDate(c.joiningDate)} — Expiry: ${formatDate(c.planExpiry)}</div></div>
+    ${customFieldsHtml}
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitEditCustomer('${enrollmentId}')"><i class="fas fa-save"></i> Save</button>`);
+}
+
+async function submitEditCustomer(enrollmentId) {
+  const name = document.getElementById('fEditCustName').value.trim();
+  const mobile = document.getElementById('fEditCustMobile').value.trim();
+  if (name.length < 2) { showToast('Name must be at least 2 characters', 'error'); return; }
+  if (mobile && !/^\d{10}$/.test(mobile)) { showToast('Enter valid 10-digit mobile', 'error'); return; }
+  const customFields = {};
+  document.querySelectorAll('.edit-custom-field').forEach(el => {
+    const fieldName = el.dataset.field;
+    customFields[fieldName] = el.value.trim();
+  });
+  const reqFields = (APP.data.settings.customFields || []).filter(f => f.required);
+  for (const f of reqFields) {
+    if (!customFields[f.name]) { showToast(`${f.name} is required`, 'error'); return; }
+  }
+  const data = {
+    enrollmentId,
+    name,
+    mobile,
+    gender: document.getElementById('fEditCustGender').value,
+    source: document.getElementById('fEditCustSource').value.trim(),
+    purpose: document.getElementById('fEditCustPurpose').value.trim(),
+    address: document.getElementById('fEditCustAddress').value.trim(),
+    customFields
+  };
+  const res = await apiPost('updateCustomer', data);
+  if (res.success) { showToast('Customer updated', 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error updating customer', 'error'); }
+}
+
+// ═══════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════
+function formatNum(n) { return Number(n||0).toLocaleString('en-IN'); }
+function formatDate(d) { if (!d) return '-'; const parts = d.split('-'); if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`; return d; }
+function todayStr() { return new Date().toISOString().split('T')[0]; }
+function daysDiff(dateStr) { if (!dateStr) return 999; const d = new Date(dateStr); const today = new Date(); today.setHours(0,0,0,0); d.setHours(0,0,0,0); return Math.round((d - today) / 86400000); }
+function addMonths(dateStr, months) { const d = new Date(dateStr); d.setMonth(d.getMonth() + months); return d.toISOString().split('T')[0]; }
+
+function amountInWords(num) {
+  if (num === 0) return 'Zero Rupees Only';
+  const ones = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+  const tens = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+  function twoDigit(n) { if (n < 20) return ones[n]; return tens[Math.floor(n/10)] + (n%10 ? ' ' + ones[n%10] : ''); }
+  function convert(n) {
+    if (n === 0) return '';
+    let str = '';
+    if (n >= 10000000) { str += twoDigit(Math.floor(n/10000000)) + ' Crore '; n %= 10000000; }
+    if (n >= 100000) { str += twoDigit(Math.floor(n/100000)) + ' Lakh '; n %= 100000; }
+    if (n >= 1000) { str += twoDigit(Math.floor(n/1000)) + ' Thousand '; n %= 1000; }
+    if (n >= 100) { str += ones[Math.floor(n/100)] + ' Hundred '; n %= 100; }
+    if (n > 0) { if (str) str += 'and '; str += twoDigit(n); }
+    return str.trim();
+  }
+  const rupees = Math.floor(num);
+  return convert(rupees) + ' Rupees Only';
+}
+
+function updateConnectionStatus(connected) {
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  dot.className = 'status-dot ' + (connected ? 'connected' : 'disconnected');
+  txt.textContent = connected ? (APP.isDemo ? 'Demo Mode' : 'Connected') : 'Disconnected';
+}
+
+function showToast(msg, type = 'success') {
+  const c = document.getElementById('toastContainer');
+  const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-exclamation-triangle';
+  const t = document.createElement('div');
+  t.className = 'toast toast-' + type;
+  t.innerHTML = `<i class="fas ${icon}"></i><span>${msg}</span>`;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(20px)'; setTimeout(() => t.remove(), 300); }, 3500);
+}
+
+let _searchTimer = null;
+function debounceSearch(val) {
+  clearTimeout(_searchTimer);
+  if (val.trim().length >= 2) _searchTimer = setTimeout(() => handleGlobalSearch(val), 400);
+}
+
+function handleGlobalSearch(query) {
+  if (!query.trim() || query.trim().length < 2) return;
+  const q = query.toLowerCase();
+  const custResults = APP.data.customers.filter(c => c.name.toLowerCase().includes(q) || c.mobile?.includes(q) || c.enrollmentId.toLowerCase().includes(q));
+  const payResults = APP.data.payments.filter(p => p.receipt.toLowerCase().includes(q) || p.name.toLowerCase().includes(q));
+  const leadResults = APP.data.leads.filter(l => l.name.toLowerCase().includes(q) || l.mobile?.includes(q) || l.leadId.toLowerCase().includes(q));
+  if (!custResults.length && !payResults.length && !leadResults.length) { showToast('No results found for "' + query + '"', 'warning'); return; }
+  let html = '';
+  if (custResults.length) {
+    html += `<div class="text-muted fs-12 fw-600 mb-8" style="margin-top:8px">CUSTOMERS (${custResults.length})</div>`;
+    html += custResults.slice(0, 10).map(c => `<div style="padding:10px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showCustomerProfile('${c.enrollmentId}')"><span class="fw-600 text-primary">${c.enrollmentId}</span> — ${c.name} <span class="text-muted">${c.mobile||''}</span> <span class="badge-status badge-${c.status?.toLowerCase()}" style="display:inline">${c.status}</span></div>`).join('');
+  }
+  if (payResults.length) {
+    html += `<div class="text-muted fs-12 fw-600 mb-8" style="margin-top:12px">PAYMENTS (${payResults.length})</div>`;
+    html += payResults.slice(0, 10).map(p => `<div style="padding:10px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showReceipt('${p.receipt}')"><span class="fw-600 text-primary">${p.receipt}</span> — ${p.name} — ₹${formatNum(p.amount)} <span class="text-muted">${formatDate(p.date)}</span></div>`).join('');
+  }
+  if (leadResults.length) {
+    html += `<div class="text-muted fs-12 fw-600 mb-8" style="margin-top:12px">LEADS (${leadResults.length})</div>`;
+    html += leadResults.slice(0, 10).map(l => `<div style="padding:10px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showLeadDetail('${l.leadId}')"><span class="fw-600 text-primary">${l.leadId}</span> — ${l.name} <span class="text-muted">${l.mobile||''}</span> <span class="badge-status badge-upcoming">${l.stage}</span></div>`).join('');
+  }
+  openModal(`Search Results: "${query}"`, html, `<button class="btn btn-outline" onclick="closeModal()">Close</button>`);
+}
+
+function showNotifications() {
+  const today = todayStr();
+  const expiring = APP.data.customers.filter(c => c.status !== 'Renewed').filter(c => { const d = daysDiff(c.planExpiry); return d >= 0 && d <= 7 && c.status === 'Active'; });
+  const followUps = APP.data.leads.filter(l => l.nextFollowUpDate === today && l.stage !== 'Enrolled' && l.stage !== 'Lost');
+  const dues = APP.data.customers.filter(c => c.dueAmount > 0 && c.status === 'Active');
+  let html = '';
+  html += `<div class="text-muted fs-12 fw-600 mb-8"><i class="fas fa-clock text-warning"></i> EXPIRING WITHIN 7 DAYS (${expiring.length})</div>`;
+  if (expiring.length) {
+    html += expiring.map(c => `<div style="padding:8px 12px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showCustomerProfile('${c.enrollmentId}')"><span class="fw-600">${c.name}</span> — ${c.service} (${c.planType}) — Expiry: ${formatDate(c.planExpiry)}</div>`).join('');
+  } else { html += '<div class="text-muted" style="padding:6px 0">No customers expiring soon</div>'; }
+  html += `<div class="text-muted fs-12 fw-600 mb-8" style="margin-top:16px"><i class="fas fa-phone text-info"></i> TODAY'S FOLLOW-UPS (${followUps.length})</div>`;
+  if (followUps.length) {
+    html += followUps.map(l => `<div style="padding:8px 12px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showLeadDetail('${l.leadId}')"><span class="fw-600">${l.name}</span> — ${l.interestedService||'N/A'} — <span class="badge-status badge-${l.priority==='Hot'?'hot':l.priority==='Cold'?'cold':'warm'}">${l.priority}</span></div>`).join('');
+  } else { html += '<div class="text-muted" style="padding:6px 0">No follow-ups scheduled for today</div>'; }
+  html += `<div class="text-muted fs-12 fw-600 mb-8" style="margin-top:16px"><i class="fas fa-rupee-sign text-danger"></i> OUTSTANDING DUES (${dues.length})</div>`;
+  if (dues.length) {
+    html += dues.map(c => `<div style="padding:8px 12px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px;cursor:pointer" onclick="closeModal();showCustomerProfile('${c.enrollmentId}')"><span class="fw-600">${c.name}</span> — ${c.service} — <span class="text-danger fw-600">₹${formatNum(c.dueAmount)}</span></div>`).join('');
+  } else { html += '<div class="text-muted" style="padding:6px 0">No outstanding dues</div>'; }
+  openModal('Notifications', html, `<button class="btn btn-outline" onclick="closeModal()">Close</button>`);
+}
+
+function updateSortIcons(tableName) {
+  // Reset all sort icons for this table, then highlight active one
+  document.querySelectorAll('[id^="sortIcon_' + tableName + '_"]').forEach(icon => {
+    icon.className = 'fas fa-sort';
+    icon.style.opacity = '0.4';
+  });
+  const activeKey = Object.keys(APP.sortState).find(k => k.startsWith(tableName + '_'));
+  if (activeKey) {
+    const dir = APP.sortState[activeKey];
+    const icon = document.getElementById('sortIcon_' + activeKey);
+    if (icon) {
+      icon.className = dir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+      icon.style.opacity = '1';
+      icon.style.color = 'var(--primary)';
+    }
+  }
+}
+
+function sortTable(tableName, field) {
+  const key = tableName + '_' + field;
+  APP.sortState[key] = APP.sortState[key] === 'asc' ? 'desc' : 'asc';
+  const dir = APP.sortState[key];
+  if (APP.page[tableName]) APP.page[tableName] = 1; // Reset to page 1 on sort
+  if (tableName === 'customers') {
+    // Clear other customer sort keys so only one is active
+    Object.keys(APP.sortState).forEach(k => { if (k.startsWith('customers_') && k !== key) delete APP.sortState[k]; });
+    filterCustomers();
+  } else if (tableName === 'payments') {
+    // Clear any other payment sort keys so only one is active
+    Object.keys(APP.sortState).forEach(k => { if (k.startsWith('payments_') && k !== key) delete APP.sortState[k]; });
+    filterPayments();
+  } else if (tableName === 'leads') {
+    Object.keys(APP.sortState).forEach(k => { if (k.startsWith('leads_') && k !== key) delete APP.sortState[k]; });
+    filterLeads();
+  } else if (tableName === 'expenses') {
+    Object.keys(APP.sortState).forEach(k => { if (k.startsWith('expenses_') && k !== key) delete APP.sortState[k]; });
+    filterExpenses();
+  }
+  showToast(`Sorted by ${field} (${dir})`, 'success');
+}
+
+function exportCustomers() {
+  const customers = APP.data.customers;
+  if (!customers.length) { showToast('No customers to export', 'warning'); return; }
+  const headers = ['Enrollment ID','Name','Mobile','Gender','Source','Purpose','Address','Service','Plan Type','Plan Price','Discount','Joining Date','Plan Expiry','Total Paid','Due Amount','Due Date','EMI Count','Status','Remarks'];
+  const rows = customers.map(c => [c.enrollmentId, c.name, c.mobile, c.gender, c.source, c.purpose, c.address, c.service, c.planType, c.planPrice, c.discount, c.joiningDate, c.planExpiry, c.totalPaid, c.dueAmount, c.dueDate, c.emiCount, c.status, c.remarks].map(v => '"' + String(v||'').replace(/"/g, '""') + '"').join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'FitKatha_Customers_' + todayStr() + '.csv'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Customers exported successfully', 'success');
+}
+
+function exportAllData() {
+  const c = APP.data.customers, p = APP.data.payments, l = APP.data.leads;
+  if (!c.length && !p.length && !l.length) { showToast('No data to export', 'warning'); return; }
+  let csv = '=== CUSTOMERS ===\n';
+  const cHeaders = ['Enrollment ID','Name','Mobile','Gender','Source','Purpose','Address','Service','Plan Type','Plan Price','Discount','Joining Date','Plan Expiry','Total Paid','Due Amount','Due Date','EMI Count','Status','Remarks'];
+  csv += cHeaders.join(',') + '\n';
+  csv += c.map(r => [r.enrollmentId, r.name, r.mobile, r.gender, r.source, r.purpose, r.address, r.service, r.planType, r.planPrice, r.discount, r.joiningDate, r.planExpiry, r.totalPaid, r.dueAmount, r.dueDate, r.emiCount, r.status, r.remarks].map(v => '"' + String(v||'').replace(/"/g, '""') + '"').join(',')).join('\n');
+  csv += '\n\n=== PAYMENTS ===\n';
+  const pHeaders = ['Receipt','Date','Name','Enrollment ID','Mobile','Service','Plan Type','Plan Price','EMI','Amount','Mode','Balance','Remarks'];
+  csv += pHeaders.join(',') + '\n';
+  csv += p.map(r => [r.receipt, r.date, r.name, r.enrollmentId, r.mobile, r.service, r.planType, r.planPrice, r.emi, r.amount, r.mode, r.balance, r.remarks].map(v => '"' + String(v||'').replace(/"/g, '""') + '"').join(',')).join('\n');
+  csv += '\n\n=== LEADS ===\n';
+  const lHeaders = ['Lead ID','Name','Mobile','Email','Source','Interested Service','Stage','Notes','Created Date','Last Follow-Up','Next Follow-Up','Priority'];
+  csv += lHeaders.join(',') + '\n';
+  csv += l.map(r => [r.leadId, r.name, r.mobile, r.email, r.source, r.interestedService, r.stage, r.notes, r.createdDate, r.lastFollowUpDate, r.nextFollowUpDate, r.priority].map(v => '"' + String(v||'').replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'FitKatha_Export_' + todayStr() + '.csv'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('All data exported successfully', 'success');
+}
+
+function showAddPlanModal() {
+  const services = [...new Set(APP.data.plans.map(p => p.service))];
+  openModal('Add New Plan', `
+    <div class="form-group"><label>Service <span class="required">*</span></label><select class="form-control" id="fPlanService" onchange="toggleNewServiceInput()"><option value="">Select service</option>${services.map(s => `<option>${s}</option>`).join('')}<option value="__new__">+ Add New...</option></select></div>
+    <div class="form-group" id="newServiceGroup" style="display:none"><label>New Service Name <span class="required">*</span></label><input type="text" class="form-control" id="fPlanNewService" placeholder="Enter new service name"></div>
+    <div class="form-row"><div class="form-group"><label>Plan Type <span class="required">*</span></label><select class="form-control" id="fPlanType"><option value="">Select</option><option>Monthly</option><option>Quarterly</option><option>Half Yearly</option><option>Yearly</option></select></div><div class="form-group"><label>Duration (months) <span class="required">*</span></label><input type="number" class="form-control" id="fPlanDuration" min="1" value="1"></div></div>
+    <div class="form-row"><div class="form-group"><label>Price (₹) <span class="required">*</span></label><input type="number" class="form-control" id="fPlanPrice" min="0"></div><div class="form-group"><label>Max Batch Size <span class="required">*</span></label><input type="number" class="form-control" id="fPlanBatch" min="1" value="20"></div></div>
+    <div class="form-group"><label>Timing</label><input type="text" class="form-control" id="fPlanTiming" placeholder="e.g. 6:00 AM - 7:00 AM"></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitNewPlan()"><i class="fas fa-check"></i> Add Plan</button>`);
+}
+
+function toggleNewServiceInput() {
+  const val = document.getElementById('fPlanService').value;
+  document.getElementById('newServiceGroup').style.display = val === '__new__' ? 'block' : 'none';
+}
+
+async function submitNewPlan() {
+  let service = document.getElementById('fPlanService').value;
+  if (service === '__new__') { service = document.getElementById('fPlanNewService').value.trim(); }
+  const planType = document.getElementById('fPlanType').value;
+  const duration = Number(document.getElementById('fPlanDuration').value);
+  const price = Number(document.getElementById('fPlanPrice').value);
+  const timing = document.getElementById('fPlanTiming').value.trim();
+  const maxBatch = Number(document.getElementById('fPlanBatch').value);
+  if (!service || !planType || !duration || price < 0 || !maxBatch) { showToast('Please fill all required fields', 'error'); return; }
+  const duplicate = APP.data.plans.find(p => p.service === service && p.planType === planType);
+  if (duplicate) { showToast('A plan for this service + plan type already exists. Use edit instead.', 'error'); return; }
+  const planId = service.substring(0, 2).toUpperCase() + '-' + planType[0] + (APP.data.plans.length + 1);
+  const data = { planId, service, planType, duration, price, timing, maxBatch, enrolled: 0, pastEnrolled: 0, availability: `Available (${maxBatch} left)`, status: 'Active' };
+  const res = await apiPost('addPlan', data);
+  if (res.success) { showToast(`Plan ${planId} added for ${service}`, 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error adding plan', 'error'); }
+}
+
+function editPlan(planId) {
+  const p = APP.data.plans.find(x => x.planId === planId);
+  if (!p) return;
+  openModal('Edit Plan: ' + planId, `
+    <div class="form-group"><label>Service</label><input type="text" class="form-control" value="${p.service}" disabled style="background:var(--surface-3);cursor:not-allowed"></div>
+    <div class="form-group"><label>Plan Type</label><input type="text" class="form-control" value="${p.planType}" disabled style="background:var(--surface-3);cursor:not-allowed"></div>
+    <div class="form-row"><div class="form-group"><label>Duration (months)</label><input type="number" class="form-control" id="fEditPlanDur" value="${p.duration}" min="1"></div><div class="form-group"><label>Price (₹) <span class="required">*</span></label><input type="number" class="form-control" id="fEditPlanPrice" value="${p.price}" min="0"></div></div>
+    <div class="form-row"><div class="form-group"><label>Timing</label><input type="text" class="form-control" id="fEditPlanTiming" value="${p.timing||''}"></div><div class="form-group"><label>Max Batch Size</label><input type="number" class="form-control" id="fEditPlanBatch" value="${p.maxBatch}" min="1"></div></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitEditPlan('${planId}')"><i class="fas fa-save"></i> Save</button>`);
+}
+
+async function submitEditPlan(planId) {
+  const duration = Number(document.getElementById('fEditPlanDur').value);
+  const price = Number(document.getElementById('fEditPlanPrice').value);
+  const timing = document.getElementById('fEditPlanTiming').value.trim();
+  const maxBatch = Number(document.getElementById('fEditPlanBatch').value);
+  if (price < 0 || !maxBatch || !duration) { showToast('Please fill all required fields correctly', 'error'); return; }
+  const data = { planId, duration, price, timing, maxBatch };
+  const res = await apiPost('updatePlan', data);
+  if (res.success) { showToast('Plan updated', 'success'); closeModal(); await refreshData(); }
+  else { showToast('Error updating plan', 'error'); }
+}
+
+function renderServicesList() {
+  const container = document.getElementById('servicesList');
+  if (!container) return;
+  const services = [...new Set(APP.data.plans.map(p => p.service))];
+  let html = services.map(s => {
+    const plans = APP.data.plans.filter(p => p.service === s);
+    const enrolled = plans.reduce((sum, p) => sum + (p.enrolled||0), 0);
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:8px;background:var(--surface-3)"><div><i class="fas fa-lock text-muted" style="margin-right:8px"></i><span class="fw-600">${s}</span> <span class="text-muted fs-12">(${plans.length} plans, ${enrolled} enrolled)</span></div><span class="badge-status badge-active">Locked</span></div>`;
+  }).join('');
+  html += `<div style="margin-top:12px;display:flex;gap:8px"><input type="text" class="form-control" id="fNewServiceName" placeholder="New service name" style="flex:1"><button class="btn btn-primary" onclick="submitNewService()"><i class="fas fa-plus"></i> Add</button></div>`;
+  container.innerHTML = html;
+}
+
+async function submitNewService() {
+  const name = document.getElementById('fNewServiceName').value.trim();
+  if (!name) { showToast('Enter a service name', 'error'); return; }
+  const existing = [...new Set(APP.data.plans.map(p => p.service))];
+  if (existing.includes(name)) { showToast('Service already exists', 'error'); return; }
+  const res = await apiPost('addService', { serviceName: name });
+  if (res.success) { showToast(`Service "${name}" added! Please set pricing in Plans & Pricing.`, 'warning'); await refreshData(); navigate('plans'); }
+  else { showToast('Error adding service', 'error'); }
+}
+
+function addServiceRow() { renderServicesList(); navigate('settings'); switchSettingsTab('services'); }
+
+function renderCustomFieldsList() {
+  const container = document.getElementById('customFieldsList');
+  if (!container) return;
+  const fields = APP.data.settings.customFields || [];
+  let html = fields.map((cf, i) => `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:6px"><div><span class="fw-600">${cf.name}</span> <span class="text-muted fs-12">(${cf.type}${cf.required ? ', required' : ''})</span></div><button class="btn btn-sm btn-ghost text-danger" onclick="removeCustomField(${i})" title="Remove"><i class="fas fa-trash"></i></button></div>`).join('');
+  if (!fields.length) html = '<div class="text-muted" style="padding:8px 0">No custom fields defined</div>';
+  html += `<button class="btn btn-outline" style="margin-top:10px" onclick="showAddCustomFieldForm()"><i class="fas fa-plus"></i> Add Custom Field</button>`;
+  container.innerHTML = html;
+}
+
+function addCustomField() { showAddCustomFieldForm(); }
+
+function showAddCustomFieldForm() {
+  openModal('Add Custom Field', `
+    <div class="form-group"><label>Field Name <span class="required">*</span></label><input type="text" class="form-control" id="fCFName" placeholder="e.g. Blood Group"></div>
+    <div class="form-row"><div class="form-group"><label>Field Type <span class="required">*</span></label><select class="form-control" id="fCFType"><option value="text">Text</option><option value="number">Number</option><option value="date">Date</option><option value="select">Select</option></select></div><div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:6px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="fCFRequired"> Required field</label></div></div>
+  `, `<button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitCustomField()"><i class="fas fa-check"></i> Add Field</button>`);
+}
+
+async function submitCustomField() {
+  const name = document.getElementById('fCFName').value.trim();
+  const type = document.getElementById('fCFType').value;
+  const required = document.getElementById('fCFRequired').checked;
+  if (!name) { showToast('Field name is required', 'error'); return; }
+  if (!APP.data.settings.customFields) APP.data.settings.customFields = [];
+  const dup = APP.data.settings.customFields.find(f => f.name.toLowerCase() === name.toLowerCase());
+  if (dup) { showToast('A custom field with this name already exists', 'error'); return; }
+  APP.data.settings.customFields.push({ name, type, required });
+  await apiPost('saveSettings', { customFields: APP.data.settings.customFields });
+  showToast(`Custom field "${name}" added`, 'success');
+  closeModal();
+  renderCustomFieldsList();
+}
+
+function removeCustomField(index) {
+  if (!confirm('Remove this custom field?')) return;
+  APP.data.settings.customFields.splice(index, 1);
+  apiPost('saveSettings', { customFields: APP.data.settings.customFields });
+  renderCustomFieldsList();
+  showToast('Custom field removed', 'success');
+}
+</script>
+</body>
+</html>
